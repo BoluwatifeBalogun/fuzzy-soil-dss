@@ -1,0 +1,6 @@
+flask>=3.1,<4
+scikit-fuzzy==0.5.0
+numpy>=1.26
+scipy>=1.11
+gunicorn>=22
+pytest>=8

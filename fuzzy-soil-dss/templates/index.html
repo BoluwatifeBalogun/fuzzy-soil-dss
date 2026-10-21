@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+{% block title %}Will it grow here?{% endblock %}
+{% block content %}
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <h1 id="heroTitle">Will <span class="swap" id="cropSwap">tomato</span> grow in this soil?</h1>
+      <p class="lede" style="margin-top:1.4rem">Eight things you can measure or feel in a handful of soil. One answer, with its reasons, graded the way FAO grades land. Built for vegetable farmers and extension agents across Nigeria's six agro-ecological zones.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary btn-lg" href="{{ url_for('analyse') }}">Check a plot
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn btn-ghost btn-lg" href="{{ url_for('method') }}">How it decides</a>
+      </div>
+      <p class="hero-note">No lab certificate? Start from your state's typical soil and adjust what you know.</p>
+    </div>
+    <div class="core" aria-hidden="true">
+      <svg viewBox="0 0 300 400">
+        <defs>
+          <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="table" tableValues="0 .18"/></feComponentTransfer><feBlend mode="multiply" in2="SourceGraphic"/></filter>
+          <clipPath id="cut"><path d="M40 20 h220 a14 14 0 0 1 14 14 v300 a60 60 0 0 1 -60 60 h-128 a60 60 0 0 1 -60 -60 v-300 a14 14 0 0 1 14 -14 z"/></clipPath>
+        </defs>
+        <g clip-path="url(#cut)">
+          <rect class="layer" style="animation-delay:.1s" x="0" y="300" width="300" height="100" fill="#8B6B4F"/>
+          <rect class="layer" style="animation-delay:.25s" x="0" y="215" width="300" height="90" fill="#B4412A"/>
+          <rect class="layer" style="animation-delay:.4s" x="0" y="130" width="300" height="90" fill="#6E4B32"/>
+          <rect class="layer" style="animation-delay:.55s" x="0" y="60" width="300" height="75" fill="#3B2E24"/>
+          <rect class="layer" style="animation-delay:.7s" x="0" y="0" width="300" height="65" fill="#2F6B3A"/>
+          <rect x="0" y="0" width="300" height="400" filter="url(#grain)" fill="#000" opacity=".35"/>
+          <g class="layer" style="animation-delay:.85s" stroke="#1B1410" stroke-opacity=".35" stroke-width="1.5" fill="none">
+            <path d="M60 30 c10 20 -8 40 4 62 c10 18 -4 40 6 60"/><path d="M150 36 c-14 22 12 50 -6 80 c-10 18 6 40 -2 70"/><path d="M230 28 c6 24 -12 44 2 70 c12 22 -6 48 4 80"/>
+          </g>
+          <path d="M40 20 h220 a14 14 0 0 1 14 14 v300 a60 60 0 0 1 -60 60 h-128 a60 60 0 0 1 -60 -60 v-300 a14 14 0 0 1 14 -14 z" fill="none" stroke="var(--fg)" stroke-opacity=".25" stroke-width="2"/>
+        </g>
+      </svg>
+      <div class="reading" style="left:-6%;top:12%;animation-delay:1.1s"><b>pH 5.6</b><span>moderately acidic</span></div>
+      <div class="reading" style="right:-8%;top:40%;animation-delay:1.3s"><b>1.4 g/kg N</b><span>moderate</span></div>
+      <div class="reading" style="left:4%;bottom:14%;animation-delay:1.5s"><b>sandy loam</b><span>drains fast</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <hr class="rule">
+    <div class="section-head" style="margin-top:2rem">
+      <h2 class="reveal">A lab result is a number. A decision needs a reason.</h2>
+      <p class="muted reveal">Most soil tools either stop at the numbers or hide the reasoning. It does the agronomist's job in the open: it turns each reading into a degree of "good" or "poor" for the crop you chose, applies the rules a soil scientist would, and tells you which factor is holding the plot back.</p>
+    </div>
+    <div class="pipe reveal">
+      <div><div class="k">1 of 4</div><h3>Read the soil</h3><p>pH, nitrogen, phosphorus, potassium, organic carbon, salinity, moisture and texture. From a lab sheet, a test kit, or your hands.</p></div>
+      <div><div class="k">2 of 4</div><h3>Blur the edges</h3><p>A pH of 5.8 is not simply "acidic". It is mostly fine and a little sour. Fuzzy membership keeps that honesty instead of forcing a label.</p></div>
+      <div><div class="k">3 of 4</div><h3>Apply the rules</h3><p>A short rule base per crop, generated from published crop requirements and the FAO principle that the weakest factor sets the ceiling.</p></div>
+      <div><div class="k">4 of 4</div><h3>Give a graded answer</h3><p>A score from 0 to 100, an FAO class from S1 to N, the limiting factors in order, and what to do about each.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 class="reveal">Six crops that feed Nigerian markets</h2>
+      <p class="muted reveal">Each crop carries its own requirements. Onion will not forgive salt that tomato shrugs off; cabbage wants the clay loam that onion hates.</p>
+    </div>
+    <div class="crops">
+      {% for k in CROP_ORDER %}{% set c = CROPS[k] %}
+      <a class="crop reveal" href="{{ url_for('analyse', crop=k) }}" style="--accent:{{ c.accent }}">
+        <h3>{{ c.name }}</h3>
+        <span class="sci">{{ c.scientific }}</span>
+        <p>{{ c.blurb }}</p>
+        <div class="meta"><span>pH <b>{{ c.ph.s1[0] }} to {{ c.ph.s1[1] }}</b></span><span>salt limit <b>{{ c.ec.a }} dS/m</b></span></div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 class="reveal">From the Sahel to the mangroves</h2>
+      <p class="muted reveal">Pick your state and the form starts from the soil your zone usually has. Every value stays editable; the preset is a starting point, not a verdict.</p>
+    </div>
+    <div class="zones reveal">
+      {% for zk in ZONE_ORDER %}{% set z = ZONES[zk] %}
+      <div class="zone" style="--z:{{ z.palette }}">
+        <span class="swatch" aria-hidden="true"></span>
+        <div><h3>{{ z.name }}</h3><p class="states">{{ STATES.items()|selectattr(1,'equalto',zk)|map(attribute=0)|join(', ') }}</p></div>
+        <p class="tag">{{ z.tagline }}</p>
+        <a href="{{ url_for('analyse') }}?zone={{ zk }}">Start from this soil</a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="stats reveal">
+      <div class="stat"><b data-count="{{ stats.rules }}">0</b><span>rules in the knowledge base, each with its source</span></div>
+      <div class="stat"><b data-count="{{ stats.mfs }}">0</b><span>membership functions, pH and salinity tuned per crop</span></div>
+      <div class="stat"><b data-count="{{ STATES|length }}">0</b><span>states and the FCT mapped to a zone preset</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="band reveal">
+      <h2>Check the plot before you buy the seed.</h2>
+      <p style="margin:1rem 0 1.6rem">Two minutes. No account. Print the result and take it to your extension officer.</p>
+      <a class="btn btn-primary btn-lg" href="{{ url_for('analyse') }}">Check a plot</a>
+    </div>
+  </div>
+</section>
+{% endblock %}
+{% block scripts %}
+<script>
+  APP.swapWords(document.getElementById('cropSwap'), ['tomato','pepper','okra','onion','cabbage','amaranth']);
+  APP.splitWords(document.getElementById('heroTitle'));
+</script>
+{% endblock %}

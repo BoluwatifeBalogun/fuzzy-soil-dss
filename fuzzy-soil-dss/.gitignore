@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+soil.db
+soil.db-wal
+soil.db-shm
+*.log
+.DS_Store

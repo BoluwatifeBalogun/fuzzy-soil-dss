@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% block title %}Check a plot{% endblock %}
+{% block content %}
+<section class="analyse">
+  <div class="wrap">
+    <h1 style="font-size:clamp(2rem,4.5vw,3.4rem);max-width:16ch">Tell us about the plot.</h1>
+    <p class="lede" style="margin:.8rem 0 2rem">Enter what you have. A lab sheet is best; a test kit is good; a squeeze of the soil and your state's typical values will still give a useful first answer.</p>
+
+    <form method="post" action="{{ url_for('evaluate_form') }}" id="plotForm" class="analyse-grid" novalidate>
+      <div>
+        <fieldset class="fieldset">
+          <legend>Which vegetable?</legend>
+          <div class="crop-pick" id="cropPick">
+            {% for k in CROP_ORDER %}{% set c = CROPS[k] %}
+            <label style="--accent:{{ c.accent }}"><input type="radio" name="crop" value="{{ k }}" {% if k == crop %}checked{% endif %}><span class="ck"><span class="dot" aria-hidden="true"></span>{{ c.name }}</span></label>
+            {% endfor %}
+          </div>
+        </fieldset>
+
+        <fieldset class="fieldset">
+          <legend>Where is it?</legend>
+          <p class="hint">Optional. Picking a state fills the form with the soil your agro-ecological zone usually has, so you can start by adjusting rather than guessing.</p>
+          <div class="row row-2">
+            <div>
+              <label class="lbl" for="state">State</label>
+              <select id="state" name="state">
+                <option value="">Not specified</option>
+                {% for s in STATES|sort %}<option value="{{ s }}" {% if s == state %}selected{% endif %}>{{ s }}</option>{% endfor %}
+              </select>
+            </div>
+            <div>
+              <span class="lbl">Zone</span>
+              <div id="zoneLabel" class="muted" style="padding:.7rem 0">Choose a state to see its zone</div>
+            </div>
+          </div>
+          <div class="preset-note" id="presetNote"></div>
+        </fieldset>
+
+        <fieldset class="fieldset">
+          <legend>What is the soil like?</legend>
+          <p class="hint">Drag or type a measured value. If you only know roughly, pick "low", "moderate" or "high" and the slider moves to a typical value for that level. The chips under each slider show how the value reads for the crop you chose: green is fine, gold means marginal, red means the crop will not take it.</p>
+          <div id="params">
+            {% for f in FACTOR_ORDER if f != 'texture' %}{% set F = FACTORS[f] %}
+            <div class="param" data-factor="{{ f }}">
+              <div class="top"><label for="in-{{ f }}">{{ F.label }}</label><span class="unit">{{ F.unit }}</span>{% if errors and errors[f] %}<span class="err">{{ errors[f] }}</span>{% endif %}</div>
+              <div class="val">
+                <input type="number" id="in-{{ f }}" name="{{ f }}" min="{{ F.universe[0] }}" max="{{ F.universe[1] }}" step="{{ F.step }}" value="{{ values[f] if values else '' }}" required>
+              </div>
+              <div class="roughrow" style="grid-column:1/-1"><label for="rough-{{ f }}">No number? Pick roughly</label>
+                <select class="rough" id="rough-{{ f }}" data-rough="{{ f }}">
+                  <option value="">choose</option>
+                  {% for t in F.terms %}<option value="{{ t }}">{{ F.term_labels[t] }}</option>{% endfor %}
+                </select></div>
+              <input type="range" aria-label="{{ F.label }} slider" data-for="{{ f }}" min="{{ F.universe[0] }}" max="{{ F.universe[1] }}" step="{{ F.step }}" style="grid-column:1/-1">
+              <div class="pills" data-pills="{{ f }}">
+                {% for t in F.terms %}<span class="pill" data-term="{{ t }}"><span>{{ F.term_labels[t] }}</span></span>{% endfor %}
+              </div>
+              <p class="help">{{ F.help }}</p>
+            </div>
+            {% endfor %}
+            {% set F = FACTORS['texture'] %}
+            <div class="param" data-factor="texture">
+              <div class="top"><span class="lbl" style="margin:0">Texture</span>{% if errors and errors.texture %}<span class="err">{{ errors.texture }}</span>{% endif %}</div>
+              <div></div>
+              <div class="seg" role="radiogroup" aria-label="Soil texture" style="grid-column:1/-1">
+                {% for cl in F.classes %}<label><input type="radio" name="texture" value="{{ cl }}" {% if values and values.texture == cl %}checked{% endif %}><span>{{ F.class_labels[cl] }}</span></label>{% endfor %}
+              </div>
+              <div class="pills" data-pills="texture" style="grid-column:1/-1"><span class="pill" id="texPill" data-term=""><span>choose a texture</span></span></div>
+              <p class="help">{{ F.help }}</p>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      <aside class="readout">
+        <svg class="dial" viewBox="0 0 200 130" role="img" aria-label="Live suitability score">
+          <defs><linearGradient id="dialg" x1="0" x2="1"><stop offset="0" stop-color="#B4412A"/><stop offset=".33" stop-color="#C98C2D"/><stop offset=".66" stop-color="#8A9A2E"/><stop offset="1" stop-color="#2F6B3A"/></linearGradient></defs>
+          <path d="M20 110 A80 80 0 0 1 180 110" fill="none" stroke="var(--bg-3)" stroke-width="14" stroke-linecap="round"/>
+          <path id="dialArc" d="M20 110 A80 80 0 0 1 180 110" fill="none" stroke="url(#dialg)" stroke-width="14" stroke-linecap="round" stroke-dasharray="251.3" stroke-dashoffset="251.3" style="transition:stroke-dashoffset .8s cubic-bezier(.16,1,.3,1)"/>
+          <g id="needle" style="transform-origin:100px 110px;transition:transform .8s cubic-bezier(.16,1,.3,1);transform:rotate(-90deg)"><line x1="100" y1="110" x2="100" y2="40" stroke="var(--fg)" stroke-width="3" stroke-linecap="round"/><circle cx="100" cy="110" r="7" fill="var(--fg)"/></g>
+          <text id="dialScore" x="100" y="100" text-anchor="middle" font-family="Fraunces, serif" font-size="30" fill="var(--fg)" stroke="var(--card)" stroke-width="8" paint-order="stroke" stroke-linejoin="round">--</text>
+        </svg>
+        <div class="cls" aria-live="polite" aria-atomic="true"><span class="badge" id="clsBadge" data-c="">waiting for values</span><b id="clsLabel">&nbsp;</b><span id="clsCrop">{{ CROPS[crop].name }}</span></div>
+        <div class="lim"><h4>What is holding it back</h4><ul id="limList"><li class="muted">Fill in the soil values to see.</li></ul></div>
+        <div class="submit"><button class="btn btn-primary btn-lg" type="submit">Get the full assessment</button></div>
+        <p class="ok">Saves the query so you can share or print the result.</p>
+      </aside>
+    </form>
+  </div>
+</section>
+{% endblock %}
+{% block scripts %}
+<script>
+APP.analyse({
+  crops: {{ crop_json|safe }}, zones: {{ zones_json|safe }}, states: {{ states_json|safe }},
+  factors: {{ factors_json|safe }}, ratings: {{ ratings_json|safe }}, defaults: {{ default_json|safe }}, rep: {{ rep_json|safe }},
+  initialZone: {{ zone|tojson }}, hasValues: {{ 'true' if values else 'false' }}
+});
+</script>
+{% endblock %}

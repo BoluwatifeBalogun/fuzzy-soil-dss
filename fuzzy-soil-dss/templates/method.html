@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block title %}How it decides{% endblock %}
+{% block content %}
+<section class="section">
+  <div class="wrap">
+    <h1 style="font-size:clamp(2.2rem,5vw,4rem);max-width:16ch">How the decision is made, step by step.</h1>
+    <p class="lede" style="margin:1rem 0 0">Nothing here is a black box. The method is Mamdani fuzzy inference, the same reasoning a soil scientist uses when they say "the pH is a bit low but the loam will carry it", written down so a computer can repeat it the same way every time.</p>
+
+    <div class="prose">
+      <h2>Why fuzzy?</h2>
+      <p>The FAO land evaluation framework grades land for a crop as S1 (highly suitable), S2 (moderately), S3 (marginally) or N (not suitable). The classic way to get there, the Sys method, compares each soil property against a table of ranges. The trouble is that tables have hard edges: a tomato plot at pH 5.95 lands in S2 and one at 6.05 lands in S1, although no agronomist can tell the two apart.</p>
+      <p>Fuzzy sets, introduced by Zadeh in 1965, let a value belong partly to several classes at once. A pH of 5.8 is, for tomato, about 60% "neutral" and 40% "moderately acidic". The answer that comes out is graded in the same way, and it moves smoothly as the inputs move. That is the whole idea.</p>
+
+      <h2>The pipeline</h2>
+      <div class="steps">
+        <div><span class="num">1</span><div><h3>Fuzzify</h3><p>Each of the eight readings is converted into degrees of membership (0 to 1) in a handful of named terms. The shapes of those terms are trapezoids anchored on published crop requirements, and for pH and salinity they are different for every crop.</p></div></div>
+        <div><span class="num">2</span><div><h3>Fire the rules</h3><p>Rules are IF-THEN statements. "IF salinity IS very high THEN suitability IS not suitable." The strength of a rule is the smallest membership among its conditions (fuzzy AND). A handful of rules per crop: one for each way a single factor can limit the plot, and two that say when everything is fine.</p></div></div>
+        <div><span class="num">3</span><div><h3>Aggregate</h3><p>Every rule that fired clips its output shape to its strength. The clipped shapes are laid on top of each other and the outline (the maximum) is kept.</p></div></div>
+        <div><span class="num">4</span><div><h3>Defuzzify</h3><p>The centre of gravity of that outline is a single number from 0 to 100. That number is the score, and the FAO class is read off it: 75 and above is S1, 50 to 74 is S2, 25 to 49 is S3, below 25 is N.</p></div></div>
+      </div>
+
+      <h2>See the membership functions</h2>
+      <p>Pick a crop and a property. The curves are what the engine actually uses; the dashed line is a value you can drag.</p>
+    </div>
+
+    <div class="mfplot" id="mfplot">
+      <div class="ctl">
+        <label for="mfCrop" class="lbl" style="margin:0">Crop</label>
+        <select id="mfCrop" style="width:auto">{% for k in CROP_ORDER %}<option value="{{ k }}">{{ CROPS[k].name }}</option>{% endfor %}</select>
+        <label for="mfFactor" class="lbl" style="margin:0 0 0 .6rem">Property</label>
+        <select id="mfFactor" style="width:auto">{% for f in FACTOR_ORDER if f != 'texture' %}<option value="{{ f }}">{{ FACTORS[f].label }}</option>{% endfor %}</select>
+        <label for="mfVal" class="lbl" style="margin:0 0 0 .6rem">Value</label>
+        <input type="range" id="mfVal" style="width:160px" aria-label="Probe value">
+        <span class="mono" id="mfValOut"></span>
+      </div>
+      <svg id="mfSvg" viewBox="0 0 640 260" role="img" aria-label="Membership functions"></svg>
+      <div class="legend" id="mfLegend"></div>
+    </div>
+
+    <div class="prose">
+      <h2>How the rules are built</h2>
+      <p>Writing hundreds of rules by hand is how fuzzy systems go stale. This system instead keeps a small rating table per crop: every term of every property is rated S1, S2, S3 or N against published sources. The rule base is generated from that table following the FAO principle that the most limiting factor sets the ceiling:</p>
+      <pre>for each property p, each term t rated N:
+    IF p IS t                                            THEN not suitable
+for each property p, each term t rated S3:
+    IF p IS t AND NOT (any property is in an N term)     THEN marginally suitable
+
+IF every property is in an S1-rated term                 THEN highly suitable
+IF every property is in an S1- or S2-rated term
+   AND some property is in an S2-rated term              THEN moderately suitable</pre>
+      <p>Because the class rules use fuzzy AND across all eight properties, a single bad factor at full membership pulls them to zero while its own limitation rule fires at full strength. That is Liebig's law of the minimum, which is what agronomists expect, and it is what makes the explanation honest: the limiting factors shown on a result are literally the rules that fired. The guard on the marginal rules means a second problem can never make a plot look better than a disqualifying first one.</p>
+      <p>One consequence worth knowing: a plot with one marginal limitation and a plot with five both land in S3 at the same score, because the FAO principle says the worst factor sets the class and the fuzzy aggregation takes the maximum. The result page lists every limiting factor so the difference is visible, and the per-factor chart shows it.</p>
+
+      <h2>Where the numbers come from</h2>
+      <ul>
+        <li>FAO (1976), <em>A framework for land evaluation</em>, for the S1 to N classes.</li>
+        <li>Sys, Van Ranst and Debaveye (1991, 1993) for the rating method and organic carbon classes.</li>
+        <li>Sadiq et al. (2025), <em>Heliyon</em>, for tomato pH bands on Nigerian soils.</li>
+        <li>Tanji and Kielen (2002), FAO Irrigation and Drainage Paper 61, for the Maas-Hoffman salt tolerance thresholds and slopes.</li>
+        <li>Shannon and Grieve (1999) for onion's seedling-stage salt sensitivity.</li>
+        <li>Ogunleye et al. (2018) for the precedent of Mamdani inference on Ibadan soils.</li>
+        <li>Soil-test interpretation classes used by Nigerian laboratories, after Ogunleye et al. (2018), for nitrogen, phosphorus and potassium; membership crosses 0.5 at each class boundary.</li>
+      </ul>
+      <p>Values marked <span class="prov">provisional</span> on the crop rules page come from extension guidance and are waiting for a soil scientist's review. That review is part of the validation plan in the seminar report.</p>
+
+      <h2>What this is not</h2>
+      <p>It is not a laboratory. It will not tell you a value you did not measure, and it cannot catch a problem you did not enter. It is a way of interpreting what you know the way an experienced agronomist would, consistently and with the reasoning shown. If the result matters enough to spend money on, get a soil test and talk to your extension officer.</p>
+    </div>
+  </div>
+</section>
+{% endblock %}
+{% block scripts %}
+<script>APP.mfExplorer({{ FACTORS|tojson }}, {{ CROP_ORDER|tojson }});</script>
+{% endblock %}

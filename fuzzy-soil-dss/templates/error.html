@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}{{ code }}{% endblock %}
+{% block content %}
+<section class="section"><div class="wrap">
+  <h1 style="font-size:clamp(2.2rem,5vw,4rem)">{{ code }}</h1>
+  <p class="lede" style="margin-top:1rem">{{ message }}</p>
+  <p style="margin-top:1.5rem"><a class="btn btn-primary" href="{{ url_for('analyse') }}">Check a plot</a></p>
+</div></section>
+{% endblock %}

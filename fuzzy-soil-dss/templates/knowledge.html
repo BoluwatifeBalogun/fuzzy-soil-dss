@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title %}Crop rules{% endblock %}
+{% block content %}
+{% set c = CROPS[crop] %}
+<section class="section">
+  <div class="wrap">
+    <h1 style="font-size:clamp(2.2rem,5vw,4rem);max-width:16ch">The knowledge base, in the open.</h1>
+    <p class="lede" style="margin:1rem 0 2rem">Every rating, every rule, and where it came from. {{ counts.values()|sum }} rules across {{ CROP_ORDER|length }} crops. Every rating lives in one table in <code class="mono">engine/knowledge.py</code>; change it there and the rules regenerate the next time the app starts.</p>
+    <nav class="tabs" aria-label="Crop">
+      {% for k in CROP_ORDER %}<a href="{{ url_for('knowledge', crop=k) }}" {% if k == crop %}aria-current="page"{% endif %}>{{ CROPS[k].name }}</a>{% endfor %}
+    </nav>
+
+    <div class="kb-grid">
+      <aside class="kb-side panel">
+        <h2 style="font-size:1.5rem">{{ c.name }}</h2>
+        <p class="muted small" style="font-style:italic">{{ c.scientific }}</p>
+        <p class="small">{{ c.blurb }}</p>
+        <table class="rating-table">
+          <tr><th>pH highly suitable</th><td class="mono">{{ c.ph.s1[0] }} to {{ c.ph.s1[1] }}</td></tr>
+          <tr><th>pH moderately suitable</th><td class="mono">{{ c.ph.s2_low }} to {{ c.ph.s1[0] }} and {{ c.ph.s1[1] }} to {{ c.ph.s2_high }}</td></tr>
+          <tr><th>Source</th><td class="small">{{ c.ph.source }}{% if c.ph.provisional %} <span class="prov">provisional</span>{% endif %}</td></tr>
+          <tr><th>Salt threshold (ECe)</th><td class="mono">{{ c.ec.a }} dS/m</td></tr>
+          <tr><th>Yield loss per dS/m above it</th><td class="mono">{{ c.ec.b }} %</td></tr>
+          <tr><th>Source</th><td class="small">{{ c.ec.source }}{% if c.ec.provisional %} <span class="prov">provisional</span>{% endif %}</td></tr>
+        </table>
+        <h3 style="font-size:1.1rem;margin:1.4rem 0 .5rem">Rating table</h3>
+        <table class="rating-table">
+          {% for f in FACTOR_ORDER %}{% set F = FACTORS[f] %}
+          <tr><th>{{ F.label }}</th><td>{% for t, r in ratings[f].items() %}<span style="white-space:nowrap;display:inline-block;margin:0 .5rem .3rem 0">{{ F.term_labels[t] }} <span class="rt" data-r="{{ r }}">{{ r }}</span></span>{% endfor %}</td></tr>
+          {% endfor %}
+        </table>
+      </aside>
+
+      <div>
+        <input class="search" type="search" id="ruleSearch" placeholder="Filter rules, e.g. salinity, acidic, clay" aria-label="Filter rules">
+        <h2 style="font-size:1.4rem;margin:0 0 .5rem">Class rules</h2>
+        <div id="rulesTier2">
+          {% for r in rules if r.tier == 2 %}
+          <div class="rule-card" data-text="{{ r.text|lower }}"><span class="id">{{ r.rule_id }}</span><span class="txt">{{ r.text }}</span><span class="src">{{ r.source }}</span></div>
+          {% endfor %}
+        </div>
+        <h2 style="font-size:1.4rem;margin:1.8rem 0 .5rem">Limitation rules</h2>
+        <div id="rulesTier1">
+          {% for r in rules if r.tier == 1 %}
+          <div class="rule-card" data-text="{{ r.text|lower }}"><span class="id">{{ r.rule_id }}</span><span class="txt">{{ r.text }}</span><span class="src">{{ r.source }}</span></div>
+          {% endfor %}
+        </div>
+        <p class="muted small" style="margin-top:1.5rem">Rules are stored in SQLite with their antecedent as structured JSON and are served at <code class="mono">/api/rules/{{ crop }}</code>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+{% block scripts %}
+<script>
+  const q = document.getElementById('ruleSearch');
+  q.addEventListener('input', () => { const v = q.value.toLowerCase().trim(); document.querySelectorAll('.rule-card').forEach(c => { c.style.display = !v || c.dataset.text.includes(v) ? '' : 'none'; }); });
+</script>
+{% endblock %}
