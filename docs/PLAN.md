@@ -32,7 +32,7 @@ crisp inputs  ->  fuzzify (per-crop membership functions)
 
 | # | Variable | Unit | Universe | Terms |
 |---|----------|------|----------|-------|
-| 1 | Soil pH (water) | pH | 3 to 10 | strongly acidic, moderately acidic, neutral, moderately alkaline, strongly alkaline |
+| 1 | Soil pH (water) | pH | 3 to 10 | extremely acidic, strongly acidic, moderately acidic, neutral, moderately alkaline, strongly alkaline, extremely alkaline |
 | 2 | Total nitrogen | g/kg | 0 to 5 | low, moderate, high |
 | 3 | Available phosphorus (Bray-1) | mg/kg | 0 to 60 | low, moderate, high |
 | 4 | Exchangeable potassium | cmol/kg | 0 to 2 | low, moderate, high |
@@ -46,9 +46,9 @@ pH and ECe terms are **crop-specific**: their breakpoints are computed from each
 ### 2.3 Where the breakpoints come from
 
 * **pH**: Sadiq et al. (2025) for tomato (S1 = 6.0 to 7.0, S2 = 5.0 to 5.9 and 7.0 to 8.5). Other crops use provisional ranges from extension guidance, flagged in the knowledge base so an expert can edit them.
-* **ECe**: Maas-Hoffman thresholds from FAO Irrigation and Drainage Paper 61 (Tanji and Kielen, 2002): tomato 2.5 dS/m, pepper 1.5, cabbage 1.8, onion 1.2, spinach 2.0 (proxy for amaranth). Okra has no published threshold and is treated as moderately sensitive (2.0, slope 10). From the threshold `a` and slope `b` (% yield loss per dS/m), term crossovers follow the Sys et al. (1991) yield bands: low/moderate at 20% loss (S1 is above 80% of potential yield), moderate/high at 40%, high/very high at 60%. EC at loss L is `a + L / b`. Salinity above `a` but inside "low" is still reported to the user as a note with the estimated loss.
+* **ECe**: Maas-Hoffman thresholds from FAO Irrigation and Drainage Paper 61 (Tanji and Kielen, 2002): tomato 2.5 dS/m, pepper 1.5, cabbage 1.8, onion 1.2, spinach 2.0 (proxy for amaranth). Okra has no published threshold and is treated as moderately sensitive (2.0, slope 10). From the threshold `a` and slope `b` (% yield loss per dS/m), term crossovers follow the Sys et al. (1991) limitation levels (85, 60 and 40 per cent of potential yield): low/moderate at 15% loss, moderate/high at 40%, high/very high at 60%. EC at loss L is `a + L / b`. Salinity above `a` but inside "low" is still reported to the user as a note with the estimated loss.
 * **N, P, K, OC**: soil-test interpretation classes used by Nigerian laboratories, after Ogunleye et al. (2018) (total N: <1 g/kg low, 1 to 2 moderate, >2 high; Bray-1 P: <8 mg/kg low, 8 to 20 moderate, >20 high; K: <0.15 cmol/kg low, 0.15 to 0.30 moderate, >0.30 high; OC: <0.5% very low, 0.5 to 1.0 low, 1.0 to 1.5 moderate, >1.5 high, after Sys et al. 1993). Membership crosses 0.5 exactly at each class boundary and adjacent terms sum to 1 everywhere (a partition of unity), which the tests check on a 4,000-point grid for every crop and factor.
-* **Ratings**: pH strongly acidic/alkaline and tomato/onion on clay or waterlogged soil are N; sandy texture, dry soil and near-absent organic carbon are S3; low N, P, K and low OC are S2 because fertility is a correctable limitation (Sys et al., 1991); moderate and high are S1.
+* **Ratings**: pH beyond the S2 bands (strongly acidic/alkaline) is S3, following Sadiq et al. (2025); pH below about 4.5 or above about 9.0 (extremely acidic/alkaline: aluminium toxicity, sodicity) is N (provisional); tomato/onion on clay or waterlogged soil are N; sandy texture, dry soil and near-absent organic carbon are S3; low N, P, K and low OC are S2 because fertility is a correctable limitation (Sys et al., 1991); moderate and high are S1.
 * **Moisture / texture**: FAO (1976) and crop agronomy; onion and tomato are rated harder on heavy clay and waterlogging than amaranth and okra.
 
 ### 2.4 Rule generation (two tiers)
@@ -81,7 +81,7 @@ Consequences of this structure:
 * A plot with one S3 limitation and a plot with five both score 37.3: max-aggregation and the most-limiting-factor principle set the class from the worst factor alone. The result page lists every limiting factor and the per-factor chart shows the difference.
 * The limiting factors are the tier-1 rules that fired, sorted by firing strength (N counted double), ties broken by how hard the factor is to correct: texture, moisture, pH, salinity, organic carbon, N, P, K.
 
-Rule count per crop: one tier-1 rule per S3- or N-rated term plus 2 tier-2 rules (9 to 11 per crop; 64 in all). All rules are stored in SQLite as JSON with a `source` field, and are regenerated automatically whenever `knowledge.py` changes (a hash of the file is kept in the database).
+Rule count per crop: one tier-1 rule per S3- or N-rated term plus 2 tier-2 rules (12 or 13 per crop; 76 in all). All rules are stored in SQLite as JSON with a `source` field, and are regenerated automatically whenever `knowledge.py` changes (a hash of the file is kept in the database).
 
 ### 2.5 Output variable and class mapping
 
@@ -177,7 +177,7 @@ Generated with the ui-ux-pro-max skill for "agriculture soil farming decision su
 | Step | Deliverable | Checks |
 |------|-------------|--------|
 | 1 | `engine/` with knowledge tables, MF builders, rule generator, inference, explanation | pytest: partition of unity on every factor and crop, universe end points, monotonicity in every factor, adding a limitation never raises the score, hand-calculated centroid, worked example, veto behaviour, every zone preset runs |
-| 2 | SQLite schema + seed script | DB has 6 crops, 64 rules, 6 zones, 37 states; rules reseed when knowledge.py changes |
+| 2 | SQLite schema + seed script | DB has 6 crops, 76 rules, 6 zones, 37 states; rules reseed when knowledge.py changes |
 | 3 | Flask app + API | Flask test client: pages render, form round trip, validation re-render, malformed JSON returns 400 not 500, feedback needs a real query, 20 previews average under 0.2 s |
 | 4 | Templates + CSS + JS | screenshots at 1440 / 375 on all pages, light and dark |
 | 5 | Methodology + knowledge pages | interactive MF plot works without network |
@@ -185,6 +185,19 @@ Generated with the ui-ux-pro-max skill for "agriculture soil farming decision su
 
 Out of scope for this build (future work, per Chapter Three): expert validation on 40 real samples, SUS testing with farmers, an administrator page with accounts, Hausa / Yoruba / Igbo localisation, USSD channel.
 
-## 7. Deploying
+## 7. Changes made during evaluation (Chapter Four)
+
+* pH ratings were stricter than the cited source: strongly acidic/alkaline was rated N, so the Humid forest preset (Lagos, Ogun) returned "not suitable" for amaranth, onion and cabbage. Sadiq et al. (2025) rate pH beyond the S2 bands as S3. pH now has seven terms; the two outer ones (below about 4.5, above about 9.0) are N.
+* Hint text colour failed WCAG 4.5:1 in light mode (3.3:1); darkened to #69615A (5.3:1).
+* Result panels overflowed by 2 px at 375 px; fixed with min-width: 0 on grid children.
+* After a validation error the Zone label lost the selected state; fixed.
+* Result panels stretched to the height of the neighbouring panel; now aligned to the top.
+* Salinity crossovers moved from 20/40/60 to 15/40/60 per cent yield loss to match the Sys et al. (1991) limitation levels (85/60/40 per cent of potential yield).
+* Extreme-pH rules now cite the extreme-band source; query_log.crop_id and feedback.query_id declared as foreign keys.
+* "Worth watching" notes said "moderate, not limiting" under a factor labelled "low"; now say "rated S2, correctable, not limiting".
+
+Evaluation is reproducible with `python tests/evaluate_system.py` (writes docs/evaluation/results.json).
+
+## 8. Deploying
 
 `render.yaml` and `Procfile` are included. Push to GitHub, create a Render Blueprint from the repository, and it builds with gunicorn. Uncomment the disk block in `render.yaml` to keep the query log across deploys.

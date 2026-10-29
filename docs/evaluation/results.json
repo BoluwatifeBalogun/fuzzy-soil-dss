@@ -1,0 +1,2695 @@
+{
+ "rules": {
+  "tomato": {
+   "total": 13,
+   "not_suitable": 5,
+   "marginal": 6,
+   "class_rules": 2
+  },
+  "pepper": {
+   "total": 13,
+   "not_suitable": 4,
+   "marginal": 7,
+   "class_rules": 2
+  },
+  "okra": {
+   "total": 12,
+   "not_suitable": 3,
+   "marginal": 7,
+   "class_rules": 2
+  },
+  "onion": {
+   "total": 13,
+   "not_suitable": 5,
+   "marginal": 6,
+   "class_rules": 2
+  },
+  "cabbage": {
+   "total": 13,
+   "not_suitable": 3,
+   "marginal": 8,
+   "class_rules": 2
+  },
+  "amaranth": {
+   "total": 12,
+   "not_suitable": 3,
+   "marginal": 7,
+   "class_rules": 2
+  }
+ },
+ "rules_total": 76,
+ "mf_count": {
+  "shared": 16,
+  "crop_specific_per_crop": 11,
+  "total": 82
+ },
+ "examples": {
+  "tomato_worked": {
+   "score": 62.3,
+   "class": "S2",
+   "fired": [
+    [
+     "TOM-C02",
+     0.8,
+     "moderately_suitable"
+    ]
+   ],
+   "limiting": [],
+   "notes": [
+    [
+     "ph",
+     "moderately_acidic"
+    ],
+    [
+     "organic_carbon",
+     "low"
+    ]
+   ],
+   "memberships": {
+    "ph": {
+     "extremely_acidic": 0.0,
+     "strongly_acidic": 0.0,
+     "moderately_acidic": 0.8,
+     "neutral": 0.2,
+     "moderately_alkaline": 0.0,
+     "strongly_alkaline": 0.0,
+     "extremely_alkaline": 0.0
+    },
+    "nitrogen": {
+     "low": 0.0,
+     "moderate": 1.0,
+     "high": 0.0
+    },
+    "phosphorus": {
+     "low": 0.0,
+     "moderate": 1.0,
+     "high": 0.0
+    },
+    "potassium": {
+     "low": 0.0,
+     "moderate": 1.0,
+     "high": 0.0
+    },
+    "organic_carbon": {
+     "very_low": 0.0,
+     "low": 1.0,
+     "moderate": 0.0,
+     "high": 0.0
+    },
+    "ec": {
+     "low": 1.0,
+     "moderate": 0.0,
+     "high": 0.0,
+     "very_high": 0.0
+    },
+    "moisture": {
+     "dry": 0.0,
+     "moist": 1.0,
+     "wet": 0.0
+    },
+    "texture": {
+     "sandy": 0.0,
+     "sandy_loam": 0.0,
+     "loam": 1.0,
+     "clay_loam": 0.0,
+     "clay": 0.0
+    }
+   },
+   "factor_scores": {
+    "ph": 72.0,
+    "nitrogen": 100.0,
+    "phosphorus": 100.0,
+    "potassium": 100.0,
+    "organic_carbon": 65.0,
+    "ec": 100.0,
+    "moisture": 100.0,
+    "texture": 100.0
+   }
+  },
+  "tomato_r1": {
+   "score": 88.3,
+   "class": "S1",
+   "fired": [
+    [
+     "TOM-C01",
+     1.0,
+     "highly_suitable"
+    ]
+   ],
+   "limiting": [],
+   "notes": [],
+   "memberships": {
+    "ph": {
+     "extremely_acidic": 0.0,
+     "strongly_acidic": 0.0,
+     "moderately_acidic": 0.0,
+     "neutral": 1.0,
+     "moderately_alkaline": 0.0,
+     "strongly_alkaline": 0.0,
+     "extremely_alkaline": 0.0
+    },
+    "nitrogen": {
+     "low": 0.0,
+     "moderate": 1.0,
+     "high": 0.0
+    },
+    "phosphorus": {
+     "low": 0.0,
+     "moderate": 1.0,
+     "high": 0.0
+    },
+    "potassium": {
+     "low": 0.0,
+     "moderate": 1.0,
+     "high": 0.0
+    },
+    "organic_carbon": {
+     "very_low": 0.0,
+     "low": 0.0,
+     "moderate": 1.0,
+     "high": 0.0
+    },
+    "ec": {
+     "low": 1.0,
+     "moderate": 0.0,
+     "high": 0.0,
+     "very_high": 0.0
+    },
+    "moisture": {
+     "dry": 0.0,
+     "moist": 1.0,
+     "wet": 0.0
+    },
+    "texture": {
+     "sandy": 0.0,
+     "sandy_loam": 0.0,
+     "loam": 1.0,
+     "clay_loam": 0.0,
+     "clay": 0.0
+    }
+   },
+   "factor_scores": {
+    "ph": 100.0,
+    "nitrogen": 100.0,
+    "phosphorus": 100.0,
+    "potassium": 100.0,
+    "organic_carbon": 100.0,
+    "ec": 100.0,
+    "moisture": 100.0,
+    "texture": 100.0
+   }
+  },
+  "tomato_ph58": {
+   "score": 76.8,
+   "class": "S1",
+   "fired": [
+    [
+     "TOM-C01",
+     0.6,
+     "highly_suitable"
+    ],
+    [
+     "TOM-C02",
+     0.4,
+     "moderately_suitable"
+    ]
+   ],
+   "limiting": [],
+   "notes": [],
+   "memberships": {
+    "ph": {
+     "extremely_acidic": 0.0,
+     "strongly_acidic": 0.0,
+     "moderately_acidic": 0.4,
+     "neutral": 0.6,
+     "moderately_alkaline": 0.0,
+     "strongly_alkaline": 0.0,
+     "extremely_alkaline": 0.0
+    },
+    "nitrogen": {
+     "low": 0.0,
+     "moderate": 1.0,
+     "high": 0.0
+    },
+    "phosphorus": {
+     "low": 0.0,
+     "moderate": 1.0,
+     "high": 0.0
+    },
+    "potassium": {
+     "low": 0.0,
+     "moderate": 1.0,
+     "high": 0.0
+    },
+    "organic_carbon": {
+     "very_low": 0.0,
+     "low": 0.0,
+     "moderate": 1.0,
+     "high": 0.0
+    },
+    "ec": {
+     "low": 1.0,
+     "moderate": 0.0,
+     "high": 0.0,
+     "very_high": 0.0
+    },
+    "moisture": {
+     "dry": 0.0,
+     "moist": 1.0,
+     "wet": 0.0
+    },
+    "texture": {
+     "sandy": 0.0,
+     "sandy_loam": 0.0,
+     "loam": 1.0,
+     "clay_loam": 0.0,
+     "clay": 0.0
+    }
+   },
+   "factor_scores": {
+    "ph": 86.0,
+    "nitrogen": 100.0,
+    "phosphorus": 100.0,
+    "potassium": 100.0,
+    "organic_carbon": 100.0,
+    "ec": 100.0,
+    "moisture": 100.0,
+    "texture": 100.0
+   }
+  },
+  "tomato_worked_ph58": {
+   "score": 62.4,
+   "class": "S2",
+   "fired": [
+    [
+     "TOM-C02",
+     0.6,
+     "moderately_suitable"
+    ]
+   ],
+   "limiting": [],
+   "notes": [
+    [
+     "organic_carbon",
+     "low"
+    ]
+   ],
+   "memberships": {
+    "ph": {
+     "extremely_acidic": 0.0,
+     "strongly_acidic": 0.0,
+     "moderately_acidic": 0.4,
+     "neutral": 0.6,
+     "moderately_alkaline": 0.0,
+     "strongly_alkaline": 0.0,
+     "extremely_alkaline": 0.0
+    },
+    "nitrogen": {
+     "low": 0.0,
+     "moderate": 1.0,
+     "high": 0.0
+    },
+    "phosphorus": {
+     "low": 0.0,
+     "moderate": 1.0,
+     "high": 0.0
+    },
+    "potassium": {
+     "low": 0.0,
+     "moderate": 1.0,
+     "high": 0.0
+    },
+    "organic_carbon": {
+     "very_low": 0.0,
+     "low": 1.0,
+     "moderate": 0.0,
+     "high": 0.0
+    },
+    "ec": {
+     "low": 1.0,
+     "moderate": 0.0,
+     "high": 0.0,
+     "very_high": 0.0
+    },
+    "moisture": {
+     "dry": 0.0,
+     "moist": 1.0,
+     "wet": 0.0
+    },
+    "texture": {
+     "sandy": 0.0,
+     "sandy_loam": 0.0,
+     "loam": 1.0,
+     "clay_loam": 0.0,
+     "clay": 0.0
+    }
+   },
+   "factor_scores": {
+    "ph": 86.0,
+    "nitrogen": 100.0,
+    "phosphorus": 100.0,
+    "potassium": 100.0,
+    "organic_carbon": 65.0,
+    "ec": 100.0,
+    "moisture": 100.0,
+    "texture": 100.0
+   }
+  },
+  "onion_saline": {
+   "score": 51.7,
+   "class": "S2",
+   "fired": [
+    [
+     "ONI-C02",
+     0.6,
+     "moderately_suitable"
+    ],
+    [
+     "ONI-L06",
+     0.4,
+     "marginally_suitable"
+    ]
+   ],
+   "limiting": [
+    [
+     "ec",
+     "high",
+     "S3",
+     0.4
+    ]
+   ],
+   "notes": [],
+   "memberships": {
+    "ph": {
+     "extremely_acidic": 0.0,
+     "strongly_acidic": 0.0,
+     "moderately_acidic": 0.0,
+     "neutral": 1.0,
+     "moderately_alkaline": 0.0,
+     "strongly_alkaline": 0.0,
+     "extremely_alkaline": 0.0
+    },
+    "nitrogen": {
+     "low": 0.0,
+     "moderate": 1.0,
+     "high": 0.0
+    },
+    "phosphorus": {
+     "low": 0.0,
+     "moderate": 1.0,
+     "high": 0.0
+    },
+    "potassium": {
+     "low": 0.0,
+     "moderate": 1.0,
+     "high": 0.0
+    },
+    "organic_carbon": {
+     "very_low": 0.0,
+     "low": 0.0,
+     "moderate": 1.0,
+     "high": 0.0
+    },
+    "ec": {
+     "low": 0.0,
+     "moderate": 0.6,
+     "high": 0.4,
+     "very_high": 0.0
+    },
+    "moisture": {
+     "dry": 0.0,
+     "moist": 1.0,
+     "wet": 0.0
+    },
+    "texture": {
+     "sandy": 0.0,
+     "sandy_loam": 0.0,
+     "loam": 1.0,
+     "clay_loam": 0.0,
+     "clay": 0.0
+    }
+   },
+   "factor_scores": {
+    "ph": 100.0,
+    "nitrogen": 100.0,
+    "phosphorus": 100.0,
+    "potassium": 100.0,
+    "organic_carbon": 100.0,
+    "ec": 54.2,
+    "moisture": 100.0,
+    "texture": 100.0
+   }
+  }
+ },
+ "scenarios": [
+  {
+   "name": "Kadawa irrigation scheme, Kano",
+   "crop": "tomato",
+   "inputs": {
+    "ph": 6.6,
+    "nitrogen": 0.7,
+    "phosphorus": 9,
+    "potassium": 0.25,
+    "organic_carbon": 0.45,
+    "ec": 1.4,
+    "moisture": 55,
+    "texture": "sandy_loam"
+   },
+   "expected": "S3",
+   "class": "S3",
+   "score": 45.0,
+   "limiting": [
+    "Organic carbon (very low)"
+   ],
+   "notes": [
+    "Total nitrogen (low)"
+   ],
+   "agree": true,
+   "original_expected": null
+  },
+  {
+   "name": "Vom, Jos Plateau (manured highland loam)",
+   "crop": "cabbage",
+   "inputs": {
+    "ph": 5.9,
+    "nitrogen": 2.2,
+    "phosphorus": 22,
+    "potassium": 0.4,
+    "organic_carbon": 1.9,
+    "ec": 0.3,
+    "moisture": 70,
+    "texture": "loam"
+   },
+   "expected": "S1/S2",
+   "class": "S1",
+   "score": 76.8,
+   "limiting": [],
+   "notes": [],
+   "agree": true,
+   "original_expected": null
+  },
+  {
+   "name": "Ikorodu, Lagos (3 years poultry manure, borehole)",
+   "crop": "amaranth",
+   "inputs": {
+    "ph": 6.2,
+    "nitrogen": 2.5,
+    "phosphorus": 35,
+    "potassium": 0.6,
+    "organic_carbon": 2.4,
+    "ec": 3.6,
+    "moisture": 70,
+    "texture": "sandy_loam"
+   },
+   "expected": "S1/S2",
+   "class": "S1",
+   "score": 84.1,
+   "limiting": [],
+   "notes": [
+    "Salinity (ECe) (above the 2 dS/m threshold for amaranth (green))"
+   ],
+   "agree": true,
+   "original_expected": null
+  },
+  {
+   "name": "Badagry, Lagos (fresh acid sand)",
+   "crop": "pepper",
+   "inputs": {
+    "ph": 4.6,
+    "nitrogen": 0.6,
+    "phosphorus": 4,
+    "potassium": 0.08,
+    "organic_carbon": 0.5,
+    "ec": 0.3,
+    "moisture": 60,
+    "texture": "sandy"
+   },
+   "expected": "S3",
+   "class": "S3",
+   "score": 37.3,
+   "limiting": [
+    "Texture (sandy)",
+    "Soil pH (strongly acidic)",
+    "Organic carbon (very low)"
+   ],
+   "notes": [
+    "Total nitrogen (low)",
+    "Available phosphorus (low)",
+    "Exchangeable potassium (low)"
+   ],
+   "agree": true,
+   "original_expected": "N"
+  },
+  {
+   "name": "Yenagoa, Bayelsa (waterlogged backswamp clay)",
+   "crop": "onion",
+   "inputs": {
+    "ph": 5.0,
+    "nitrogen": 1.9,
+    "phosphorus": 9,
+    "potassium": 0.3,
+    "organic_carbon": 2.6,
+    "ec": 2.8,
+    "moisture": 105,
+    "texture": "clay"
+   },
+   "expected": "N",
+   "class": "N",
+   "score": 11.7,
+   "limiting": [
+    "Texture (clay)",
+    "Soil moisture (wet / waterlogged)"
+   ],
+   "notes": [
+    "Salinity (ECe) (moderate)"
+   ],
+   "agree": true,
+   "original_expected": null
+  },
+  {
+   "name": "Yenagoa, Bayelsa (same plot)",
+   "crop": "okra",
+   "inputs": {
+    "ph": 5.0,
+    "nitrogen": 1.9,
+    "phosphorus": 9,
+    "potassium": 0.3,
+    "organic_carbon": 2.6,
+    "ec": 2.8,
+    "moisture": 105,
+    "texture": "clay"
+   },
+   "expected": "S3",
+   "class": "S3",
+   "score": 37.3,
+   "limiting": [
+    "Texture (clay)",
+    "Soil moisture (wet / waterlogged)"
+   ],
+   "notes": [
+    "Soil pH (moderately acidic)",
+    "Salinity (ECe) (above the 2 dS/m threshold for okra)"
+   ],
+   "agree": true,
+   "original_expected": null
+  },
+  {
+   "name": "Sokoto-Rima fadama, dry season",
+   "crop": "onion",
+   "inputs": {
+    "ph": 7.4,
+    "nitrogen": 0.9,
+    "phosphorus": 12,
+    "potassium": 0.3,
+    "organic_carbon": 0.6,
+    "ec": 1.0,
+    "moisture": 60,
+    "texture": "sandy_loam"
+   },
+   "expected": "S2/S3",
+   "class": "S2",
+   "score": 62.4,
+   "limiting": [],
+   "notes": [
+    "Soil pH (moderately alkaline)",
+    "Organic carbon (low)",
+    "Total nitrogen (low)"
+   ],
+   "agree": true,
+   "original_expected": null
+  },
+  {
+   "name": "Abeokuta, Ogun (kit readings only)",
+   "crop": "tomato",
+   "inputs": {
+    "ph": 6.5,
+    "nitrogen": 1.5,
+    "phosphorus": 14,
+    "potassium": 0.23,
+    "organic_carbon": 1.2,
+    "ec": 0.5,
+    "moisture": 65,
+    "texture": "loam"
+   },
+   "expected": "S1",
+   "class": "S1",
+   "score": 88.3,
+   "limiting": [],
+   "notes": [],
+   "agree": true,
+   "original_expected": null
+  },
+  {
+   "name": "Kaduna (after lime and compost)",
+   "crop": "tomato",
+   "inputs": {
+    "ph": 6.5,
+    "nitrogen": 2.3,
+    "phosphorus": 28,
+    "potassium": 0.45,
+    "organic_carbon": 1.8,
+    "ec": 0.8,
+    "moisture": 70,
+    "texture": "sandy_loam"
+   },
+   "expected": "S1",
+   "class": "S1",
+   "score": 88.3,
+   "limiting": [],
+   "notes": [],
+   "agree": true,
+   "original_expected": null
+  },
+  {
+   "name": "Yobe (alkaline fadama)",
+   "crop": "pepper",
+   "inputs": {
+    "ph": 8.3,
+    "nitrogen": 0.8,
+    "phosphorus": 10,
+    "potassium": 0.35,
+    "organic_carbon": 0.4,
+    "ec": 2.0,
+    "moisture": 50,
+    "texture": "sandy_loam"
+   },
+   "expected": "S3",
+   "class": "S3",
+   "score": 37.3,
+   "limiting": [
+    "Soil pH (strongly alkaline)",
+    "Organic carbon (very low)"
+   ],
+   "notes": [
+    "Salinity (ECe) (above the 1.5 dS/m threshold for pepper)",
+    "Total nitrogen (low)"
+   ],
+   "agree": true,
+   "original_expected": "N"
+  },
+  {
+   "name": "Boundary probe, pH 5.95",
+   "crop": "tomato",
+   "inputs": {
+    "ph": 5.95,
+    "nitrogen": 2.3,
+    "phosphorus": 28,
+    "potassium": 0.45,
+    "organic_carbon": 1.8,
+    "ec": 0.8,
+    "moisture": 70,
+    "texture": "loam"
+   },
+   "expected": "S1/S2",
+   "class": "S1",
+   "score": 84.9,
+   "limiting": [],
+   "notes": [],
+   "agree": true,
+   "original_expected": null
+  },
+  {
+   "name": "Boundary probe, pH 6.05",
+   "crop": "tomato",
+   "inputs": {
+    "ph": 6.05,
+    "nitrogen": 2.3,
+    "phosphorus": 28,
+    "potassium": 0.45,
+    "organic_carbon": 1.8,
+    "ec": 0.8,
+    "moisture": 70,
+    "texture": "loam"
+   },
+   "expected": "S1",
+   "class": "S1",
+   "score": 88.3,
+   "limiting": [],
+   "notes": [],
+   "agree": true,
+   "original_expected": null
+  },
+  {
+   "name": "Jos Plateau (heavy clay loam)",
+   "crop": "onion",
+   "inputs": {
+    "ph": 6.3,
+    "nitrogen": 1.6,
+    "phosphorus": 18,
+    "potassium": 0.3,
+    "organic_carbon": 1.4,
+    "ec": 0.4,
+    "moisture": 70,
+    "texture": "clay_loam"
+   },
+   "expected": "S3",
+   "class": "S3",
+   "score": 37.3,
+   "limiting": [
+    "Texture (clay loam)"
+   ],
+   "notes": [],
+   "agree": true,
+   "original_expected": null
+  },
+  {
+   "name": "Maiduguri outskirts (dry sand, no irrigation)",
+   "crop": "tomato",
+   "inputs": {
+    "ph": 7.0,
+    "nitrogen": 0.5,
+    "phosphorus": 6,
+    "potassium": 0.2,
+    "organic_carbon": 0.3,
+    "ec": 1.5,
+    "moisture": 20,
+    "texture": "sandy"
+   },
+   "expected": "S3/N",
+   "class": "S3",
+   "score": 37.3,
+   "limiting": [
+    "Texture (sandy)",
+    "Soil moisture (dry)",
+    "Organic carbon (very low)"
+   ],
+   "notes": [
+    "Total nitrogen (low)",
+    "Available phosphorus (low)"
+   ],
+   "agree": true,
+   "original_expected": null
+  },
+  {
+   "name": "Input error: pH typed as 14",
+   "crop": "tomato",
+   "inputs": {
+    "ph": 14,
+    "nitrogen": 1.5,
+    "phosphorus": 14,
+    "potassium": 0.23,
+    "organic_carbon": 1.2,
+    "ec": 0.0,
+    "moisture": 65,
+    "texture": "loam"
+   },
+   "expected": "N",
+   "class": "N",
+   "score": 11.7,
+   "limiting": [
+    "Soil pH (extremely alkaline)"
+   ],
+   "notes": [],
+   "agree": true,
+   "original_expected": null
+  }
+ ],
+ "scenarios_agree": 15,
+ "zones": {
+  "sahel": {
+   "tomato": {
+    "score": 37.3,
+    "class": "S3",
+    "top": "Texture"
+   },
+   "pepper": {
+    "score": 37.3,
+    "class": "S3",
+    "top": "Texture"
+   },
+   "okra": {
+    "score": 37.3,
+    "class": "S3",
+    "top": "Organic carbon"
+   },
+   "onion": {
+    "score": 37.3,
+    "class": "S3",
+    "top": "Organic carbon"
+   },
+   "cabbage": {
+    "score": 37.3,
+    "class": "S3",
+    "top": "Texture"
+   },
+   "amaranth": {
+    "score": 37.3,
+    "class": "S3",
+    "top": "Organic carbon"
+   }
+  },
+  "sudan": {
+   "tomato": {
+    "score": 54.7,
+    "class": "S2",
+    "top": "Organic carbon"
+   },
+   "pepper": {
+    "score": 54.7,
+    "class": "S2",
+    "top": "Organic carbon"
+   },
+   "okra": {
+    "score": 54.7,
+    "class": "S2",
+    "top": "Organic carbon"
+   },
+   "onion": {
+    "score": 54.7,
+    "class": "S2",
+    "top": "Organic carbon"
+   },
+   "cabbage": {
+    "score": 54.7,
+    "class": "S2",
+    "top": "Organic carbon"
+   },
+   "amaranth": {
+    "score": 54.7,
+    "class": "S2",
+    "top": "Organic carbon"
+   }
+  },
+  "guinea": {
+   "tomato": {
+    "score": 69.1,
+    "class": "S2",
+    "top": "Organic carbon (note)"
+   },
+   "pepper": {
+    "score": 69.1,
+    "class": "S2",
+    "top": "Organic carbon (note)"
+   },
+   "okra": {
+    "score": 69.1,
+    "class": "S2",
+    "top": "Organic carbon (note)"
+   },
+   "onion": {
+    "score": 69.6,
+    "class": "S2",
+    "top": "Organic carbon (note)"
+   },
+   "cabbage": {
+    "score": 62.4,
+    "class": "S2",
+    "top": "Texture (note)"
+   },
+   "amaranth": {
+    "score": 69.6,
+    "class": "S2",
+    "top": "Organic carbon (note)"
+   }
+  },
+  "derived": {
+   "tomato": {
+    "score": 72.4,
+    "class": "S2",
+    "top": "Soil pH (note)"
+   },
+   "pepper": {
+    "score": 80.5,
+    "class": "S1",
+    "top": ""
+   },
+   "okra": {
+    "score": 80.5,
+    "class": "S1",
+    "top": ""
+   },
+   "onion": {
+    "score": 62.3,
+    "class": "S2",
+    "top": "Soil pH (note)"
+   },
+   "cabbage": {
+    "score": 62.3,
+    "class": "S2",
+    "top": "Soil pH (note)"
+   },
+   "amaranth": {
+    "score": 62.3,
+    "class": "S2",
+    "top": "Soil pH (note)"
+   }
+  },
+  "forest": {
+   "tomato": {
+    "score": 62.4,
+    "class": "S2",
+    "top": "Soil pH (note)"
+   },
+   "pepper": {
+    "score": 62.4,
+    "class": "S2",
+    "top": "Soil pH (note)"
+   },
+   "okra": {
+    "score": 62.4,
+    "class": "S2",
+    "top": "Soil pH (note)"
+   },
+   "onion": {
+    "score": 37.3,
+    "class": "S3",
+    "top": "Soil pH"
+   },
+   "cabbage": {
+    "score": 37.3,
+    "class": "S3",
+    "top": "Soil pH"
+   },
+   "amaranth": {
+    "score": 37.3,
+    "class": "S3",
+    "top": "Soil pH"
+   }
+  },
+  "coastal": {
+   "tomato": {
+    "score": 11.7,
+    "class": "N",
+    "top": "Soil moisture"
+   },
+   "pepper": {
+    "score": 11.7,
+    "class": "N",
+    "top": "Soil moisture"
+   },
+   "okra": {
+    "score": 37.3,
+    "class": "S3",
+    "top": "Soil moisture"
+   },
+   "onion": {
+    "score": 11.7,
+    "class": "N",
+    "top": "Soil moisture"
+   },
+   "cabbage": {
+    "score": 37.3,
+    "class": "S3",
+    "top": "Soil moisture"
+   },
+   "amaranth": {
+    "score": 37.3,
+    "class": "S3",
+    "top": "Soil moisture"
+   }
+  }
+ },
+ "validation": {
+  "n": 1200,
+  "per_crop": 200,
+  "seed": 2026,
+  "ranges": {
+   "ph": [
+    4.5,
+    8.0
+   ],
+   "nitrogen": [
+    0.3,
+    2.8
+   ],
+   "phosphorus": [
+    3,
+    35
+   ],
+   "potassium": [
+    0.05,
+    0.6
+   ],
+   "organic_carbon": [
+    0.2,
+    2.5
+   ],
+   "ec": [
+    0.1,
+    5.0
+   ],
+   "moisture": [
+    20,
+    110
+   ]
+  },
+  "agreement_pct": 96.1,
+  "kappa": 0.932,
+  "within_one_class_pct": 100.0,
+  "confusion_crisp_rows_fuzzy_cols": {
+   "S1": {
+    "S1": 12,
+    "S2": 7,
+    "S3": 0,
+    "N": 0
+   },
+   "S2": {
+    "S1": 0,
+    "S2": 292,
+    "S3": 11,
+    "N": 0
+   },
+   "S3": {
+    "S1": 0,
+    "S2": 9,
+    "S3": 671,
+    "N": 0
+   },
+   "N": {
+    "S1": 0,
+    "S2": 0,
+    "S3": 20,
+    "N": 178
+   }
+  },
+  "by_crop_pct": {
+   "tomato": 93.0,
+   "pepper": 91.0,
+   "okra": 98.5,
+   "onion": 96.5,
+   "cabbage": 99.0,
+   "amaranth": 98.5
+  },
+  "fuzzy_dist": {
+   "S1": 12,
+   "S2": 308,
+   "S3": 702,
+   "N": 178
+  },
+  "crisp_dist": {
+   "S1": 19,
+   "S2": 303,
+   "S3": 680,
+   "N": 198
+  },
+  "disagreements": 47,
+  "disagreements_deciding_near_edge": 42,
+  "agreements": 1153,
+  "agreements_deciding_near_edge": 512,
+  "plots_any_property_on_shoulder": 930,
+  "limiting_factor_agreement": {
+   "plots": 878,
+   "agree": 872,
+   "pct": 99.3
+  },
+  "fuzzy_stricter": 18,
+  "fuzzy_more_lenient": 29
+ },
+ "sweep_ph_tomato": [
+  {
+   "x": 4.0,
+   "fuzzy": 11.7,
+   "fclass": "N",
+   "crisp": "N"
+  },
+  {
+   "x": 4.05,
+   "fuzzy": 11.7,
+   "fclass": "N",
+   "crisp": "N"
+  },
+  {
+   "x": 4.1,
+   "fuzzy": 11.7,
+   "fclass": "N",
+   "crisp": "N"
+  },
+  {
+   "x": 4.15,
+   "fuzzy": 15.9,
+   "fclass": "N",
+   "crisp": "N"
+  },
+  {
+   "x": 4.2,
+   "fuzzy": 19.5,
+   "fclass": "N",
+   "crisp": "N"
+  },
+  {
+   "x": 4.25,
+   "fuzzy": 22.6,
+   "fclass": "N",
+   "crisp": "N"
+  },
+  {
+   "x": 4.3,
+   "fuzzy": 25.3,
+   "fclass": "S3",
+   "crisp": "N"
+  },
+  {
+   "x": 4.35,
+   "fuzzy": 28.0,
+   "fclass": "S3",
+   "crisp": "S3"
+  },
+  {
+   "x": 4.4,
+   "fuzzy": 30.7,
+   "fclass": "S3",
+   "crisp": "S3"
+  },
+  {
+   "x": 4.45,
+   "fuzzy": 33.8,
+   "fclass": "S3",
+   "crisp": "S3"
+  },
+  {
+   "x": 4.5,
+   "fuzzy": 37.3,
+   "fclass": "S3",
+   "crisp": "S3"
+  },
+  {
+   "x": 4.55,
+   "fuzzy": 41.0,
+   "fclass": "S3",
+   "crisp": "S3"
+  },
+  {
+   "x": 4.6,
+   "fuzzy": 43.8,
+   "fclass": "S3",
+   "crisp": "S3"
+  },
+  {
+   "x": 4.65,
+   "fuzzy": 46.1,
+   "fclass": "S3",
+   "crisp": "S3"
+  },
+  {
+   "x": 4.7,
+   "fuzzy": 48.1,
+   "fclass": "S3",
+   "crisp": "S3"
+  },
+  {
+   "x": 4.75,
+   "fuzzy": 49.9,
+   "fclass": "S3",
+   "crisp": "S3"
+  },
+  {
+   "x": 4.8,
+   "fuzzy": 51.7,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 4.85,
+   "fuzzy": 53.6,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 4.9,
+   "fuzzy": 55.9,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 4.95,
+   "fuzzy": 58.7,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 5.0,
+   "fuzzy": 62.3,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 5.05,
+   "fuzzy": 62.3,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 5.1,
+   "fuzzy": 62.3,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 5.15,
+   "fuzzy": 62.3,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 5.2,
+   "fuzzy": 62.3,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 5.25,
+   "fuzzy": 62.3,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 5.3,
+   "fuzzy": 62.3,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 5.35,
+   "fuzzy": 62.3,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 5.4,
+   "fuzzy": 62.3,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 5.45,
+   "fuzzy": 62.3,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 5.5,
+   "fuzzy": 62.3,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 5.55,
+   "fuzzy": 65.3,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 5.6,
+   "fuzzy": 67.9,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 5.65,
+   "fuzzy": 70.2,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 5.7,
+   "fuzzy": 72.4,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 5.75,
+   "fuzzy": 74.6,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 5.8,
+   "fuzzy": 76.8,
+   "fclass": "S1",
+   "crisp": "S1"
+  },
+  {
+   "x": 5.85,
+   "fuzzy": 79.2,
+   "fclass": "S1",
+   "crisp": "S1"
+  },
+  {
+   "x": 5.9,
+   "fuzzy": 81.9,
+   "fclass": "S1",
+   "crisp": "S1"
+  },
+  {
+   "x": 5.95,
+   "fuzzy": 84.9,
+   "fclass": "S1",
+   "crisp": "S1"
+  },
+  {
+   "x": 6.0,
+   "fuzzy": 88.3,
+   "fclass": "S1",
+   "crisp": "S1"
+  },
+  {
+   "x": 6.05,
+   "fuzzy": 88.3,
+   "fclass": "S1",
+   "crisp": "S1"
+  },
+  {
+   "x": 6.1,
+   "fuzzy": 88.3,
+   "fclass": "S1",
+   "crisp": "S1"
+  },
+  {
+   "x": 6.15,
+   "fuzzy": 88.3,
+   "fclass": "S1",
+   "crisp": "S1"
+  },
+  {
+   "x": 6.2,
+   "fuzzy": 88.3,
+   "fclass": "S1",
+   "crisp": "S1"
+  },
+  {
+   "x": 6.25,
+   "fuzzy": 88.3,
+   "fclass": "S1",
+   "crisp": "S1"
+  },
+  {
+   "x": 6.3,
+   "fuzzy": 88.3,
+   "fclass": "S1",
+   "crisp": "S1"
+  },
+  {
+   "x": 6.35,
+   "fuzzy": 88.3,
+   "fclass": "S1",
+   "crisp": "S1"
+  },
+  {
+   "x": 6.4,
+   "fuzzy": 88.3,
+   "fclass": "S1",
+   "crisp": "S1"
+  },
+  {
+   "x": 6.45,
+   "fuzzy": 88.3,
+   "fclass": "S1",
+   "crisp": "S1"
+  },
+  {
+   "x": 6.5,
+   "fuzzy": 88.3,
+   "fclass": "S1",
+   "crisp": "S1"
+  },
+  {
+   "x": 6.55,
+   "fuzzy": 88.3,
+   "fclass": "S1",
+   "crisp": "S1"
+  },
+  {
+   "x": 6.6,
+   "fuzzy": 88.3,
+   "fclass": "S1",
+   "crisp": "S1"
+  },
+  {
+   "x": 6.65,
+   "fuzzy": 88.3,
+   "fclass": "S1",
+   "crisp": "S1"
+  },
+  {
+   "x": 6.7,
+   "fuzzy": 88.3,
+   "fclass": "S1",
+   "crisp": "S1"
+  },
+  {
+   "x": 6.75,
+   "fuzzy": 88.3,
+   "fclass": "S1",
+   "crisp": "S1"
+  },
+  {
+   "x": 6.8,
+   "fuzzy": 88.3,
+   "fclass": "S1",
+   "crisp": "S1"
+  },
+  {
+   "x": 6.85,
+   "fuzzy": 88.3,
+   "fclass": "S1",
+   "crisp": "S1"
+  },
+  {
+   "x": 6.9,
+   "fuzzy": 88.3,
+   "fclass": "S1",
+   "crisp": "S1"
+  },
+  {
+   "x": 6.95,
+   "fuzzy": 88.3,
+   "fclass": "S1",
+   "crisp": "S1"
+  },
+  {
+   "x": 7.0,
+   "fuzzy": 88.3,
+   "fclass": "S1",
+   "crisp": "S1"
+  },
+  {
+   "x": 7.05,
+   "fuzzy": 84.9,
+   "fclass": "S1",
+   "crisp": "S1"
+  },
+  {
+   "x": 7.1,
+   "fuzzy": 81.9,
+   "fclass": "S1",
+   "crisp": "S1"
+  },
+  {
+   "x": 7.15,
+   "fuzzy": 79.2,
+   "fclass": "S1",
+   "crisp": "S1"
+  },
+  {
+   "x": 7.2,
+   "fuzzy": 76.8,
+   "fclass": "S1",
+   "crisp": "S1"
+  },
+  {
+   "x": 7.25,
+   "fuzzy": 74.6,
+   "fclass": "S2",
+   "crisp": "S1"
+  },
+  {
+   "x": 7.3,
+   "fuzzy": 72.4,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 7.35,
+   "fuzzy": 70.2,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 7.4,
+   "fuzzy": 67.9,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 7.45,
+   "fuzzy": 65.3,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 7.5,
+   "fuzzy": 62.3,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 7.55,
+   "fuzzy": 62.3,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 7.6,
+   "fuzzy": 62.3,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 7.65,
+   "fuzzy": 62.3,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 7.7,
+   "fuzzy": 62.3,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 7.75,
+   "fuzzy": 62.3,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 7.8,
+   "fuzzy": 62.3,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 7.85,
+   "fuzzy": 62.3,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 7.9,
+   "fuzzy": 62.3,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 7.95,
+   "fuzzy": 62.3,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 8.0,
+   "fuzzy": 62.3,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 8.05,
+   "fuzzy": 62.3,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 8.1,
+   "fuzzy": 62.3,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 8.15,
+   "fuzzy": 62.3,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 8.2,
+   "fuzzy": 62.3,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 8.25,
+   "fuzzy": 62.3,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 8.3,
+   "fuzzy": 62.3,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 8.35,
+   "fuzzy": 62.3,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 8.4,
+   "fuzzy": 62.3,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 8.45,
+   "fuzzy": 62.3,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 8.5,
+   "fuzzy": 62.3,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 8.55,
+   "fuzzy": 58.7,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 8.6,
+   "fuzzy": 55.9,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 8.65,
+   "fuzzy": 53.6,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 8.7,
+   "fuzzy": 51.7,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 8.75,
+   "fuzzy": 49.9,
+   "fclass": "S3",
+   "crisp": "S2"
+  },
+  {
+   "x": 8.8,
+   "fuzzy": 48.1,
+   "fclass": "S3",
+   "crisp": "S3"
+  },
+  {
+   "x": 8.85,
+   "fuzzy": 46.1,
+   "fclass": "S3",
+   "crisp": "S3"
+  },
+  {
+   "x": 8.9,
+   "fuzzy": 43.8,
+   "fclass": "S3",
+   "crisp": "S3"
+  },
+  {
+   "x": 8.95,
+   "fuzzy": 41.0,
+   "fclass": "S3",
+   "crisp": "S3"
+  },
+  {
+   "x": 9.0,
+   "fuzzy": 37.3,
+   "fclass": "S3",
+   "crisp": "S3"
+  }
+ ],
+ "sweep_ec_onion": [
+  {
+   "x": 0.0,
+   "fuzzy": 88.3,
+   "fclass": "S1",
+   "crisp": "S1"
+  },
+  {
+   "x": 0.05,
+   "fuzzy": 88.3,
+   "fclass": "S1",
+   "crisp": "S1"
+  },
+  {
+   "x": 0.1,
+   "fuzzy": 88.3,
+   "fclass": "S1",
+   "crisp": "S1"
+  },
+  {
+   "x": 0.15,
+   "fuzzy": 88.3,
+   "fclass": "S1",
+   "crisp": "S1"
+  },
+  {
+   "x": 0.2,
+   "fuzzy": 88.3,
+   "fclass": "S1",
+   "crisp": "S1"
+  },
+  {
+   "x": 0.25,
+   "fuzzy": 88.3,
+   "fclass": "S1",
+   "crisp": "S1"
+  },
+  {
+   "x": 0.3,
+   "fuzzy": 88.3,
+   "fclass": "S1",
+   "crisp": "S1"
+  },
+  {
+   "x": 0.35,
+   "fuzzy": 88.3,
+   "fclass": "S1",
+   "crisp": "S1"
+  },
+  {
+   "x": 0.4,
+   "fuzzy": 88.3,
+   "fclass": "S1",
+   "crisp": "S1"
+  },
+  {
+   "x": 0.45,
+   "fuzzy": 88.3,
+   "fclass": "S1",
+   "crisp": "S1"
+  },
+  {
+   "x": 0.5,
+   "fuzzy": 88.3,
+   "fclass": "S1",
+   "crisp": "S1"
+  },
+  {
+   "x": 0.55,
+   "fuzzy": 88.3,
+   "fclass": "S1",
+   "crisp": "S1"
+  },
+  {
+   "x": 0.6,
+   "fuzzy": 88.3,
+   "fclass": "S1",
+   "crisp": "S1"
+  },
+  {
+   "x": 0.65,
+   "fuzzy": 88.3,
+   "fclass": "S1",
+   "crisp": "S1"
+  },
+  {
+   "x": 0.7,
+   "fuzzy": 88.3,
+   "fclass": "S1",
+   "crisp": "S1"
+  },
+  {
+   "x": 0.75,
+   "fuzzy": 88.3,
+   "fclass": "S1",
+   "crisp": "S1"
+  },
+  {
+   "x": 0.8,
+   "fuzzy": 88.3,
+   "fclass": "S1",
+   "crisp": "S1"
+  },
+  {
+   "x": 0.85,
+   "fuzzy": 88.3,
+   "fclass": "S1",
+   "crisp": "S1"
+  },
+  {
+   "x": 0.9,
+   "fuzzy": 88.3,
+   "fclass": "S1",
+   "crisp": "S1"
+  },
+  {
+   "x": 0.95,
+   "fuzzy": 88.3,
+   "fclass": "S1",
+   "crisp": "S1"
+  },
+  {
+   "x": 1.0,
+   "fuzzy": 88.3,
+   "fclass": "S1",
+   "crisp": "S1"
+  },
+  {
+   "x": 1.05,
+   "fuzzy": 88.3,
+   "fclass": "S1",
+   "crisp": "S1"
+  },
+  {
+   "x": 1.1,
+   "fuzzy": 88.3,
+   "fclass": "S1",
+   "crisp": "S1"
+  },
+  {
+   "x": 1.15,
+   "fuzzy": 88.3,
+   "fclass": "S1",
+   "crisp": "S1"
+  },
+  {
+   "x": 1.2,
+   "fuzzy": 88.3,
+   "fclass": "S1",
+   "crisp": "S1"
+  },
+  {
+   "x": 1.25,
+   "fuzzy": 88.3,
+   "fclass": "S1",
+   "crisp": "S1"
+  },
+  {
+   "x": 1.3,
+   "fuzzy": 88.3,
+   "fclass": "S1",
+   "crisp": "S1"
+  },
+  {
+   "x": 1.35,
+   "fuzzy": 88.3,
+   "fclass": "S1",
+   "crisp": "S1"
+  },
+  {
+   "x": 1.4,
+   "fuzzy": 88.3,
+   "fclass": "S1",
+   "crisp": "S1"
+  },
+  {
+   "x": 1.45,
+   "fuzzy": 88.3,
+   "fclass": "S1",
+   "crisp": "S1"
+  },
+  {
+   "x": 1.5,
+   "fuzzy": 88.3,
+   "fclass": "S1",
+   "crisp": "S1"
+  },
+  {
+   "x": 1.55,
+   "fuzzy": 88.3,
+   "fclass": "S1",
+   "crisp": "S1"
+  },
+  {
+   "x": 1.6,
+   "fuzzy": 88.3,
+   "fclass": "S1",
+   "crisp": "S1"
+  },
+  {
+   "x": 1.65,
+   "fuzzy": 87.9,
+   "fclass": "S1",
+   "crisp": "S1"
+  },
+  {
+   "x": 1.7,
+   "fuzzy": 86.1,
+   "fclass": "S1",
+   "crisp": "S1"
+  },
+  {
+   "x": 1.75,
+   "fuzzy": 84.5,
+   "fclass": "S1",
+   "crisp": "S1"
+  },
+  {
+   "x": 1.8,
+   "fuzzy": 83.0,
+   "fclass": "S1",
+   "crisp": "S1"
+  },
+  {
+   "x": 1.85,
+   "fuzzy": 81.5,
+   "fclass": "S1",
+   "crisp": "S1"
+  },
+  {
+   "x": 1.9,
+   "fuzzy": 80.2,
+   "fclass": "S1",
+   "crisp": "S1"
+  },
+  {
+   "x": 1.95,
+   "fuzzy": 78.9,
+   "fclass": "S1",
+   "crisp": "S1"
+  },
+  {
+   "x": 2.0,
+   "fuzzy": 77.7,
+   "fclass": "S1",
+   "crisp": "S1"
+  },
+  {
+   "x": 2.05,
+   "fuzzy": 76.5,
+   "fclass": "S1",
+   "crisp": "S1"
+  },
+  {
+   "x": 2.1,
+   "fuzzy": 75.4,
+   "fclass": "S1",
+   "crisp": "S1"
+  },
+  {
+   "x": 2.15,
+   "fuzzy": 74.3,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 2.2,
+   "fuzzy": 73.2,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 2.25,
+   "fuzzy": 72.2,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 2.3,
+   "fuzzy": 71.1,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 2.35,
+   "fuzzy": 69.9,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 2.4,
+   "fuzzy": 68.8,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 2.45,
+   "fuzzy": 67.5,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 2.5,
+   "fuzzy": 66.3,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 2.55,
+   "fuzzy": 64.9,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 2.6,
+   "fuzzy": 63.5,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 2.65,
+   "fuzzy": 62.3,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 2.7,
+   "fuzzy": 62.3,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 2.75,
+   "fuzzy": 62.3,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 2.8,
+   "fuzzy": 62.3,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 2.85,
+   "fuzzy": 62.3,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 2.9,
+   "fuzzy": 62.3,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 2.95,
+   "fuzzy": 62.3,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 3.0,
+   "fuzzy": 62.3,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 3.05,
+   "fuzzy": 62.3,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 3.1,
+   "fuzzy": 62.3,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 3.15,
+   "fuzzy": 62.3,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 3.2,
+   "fuzzy": 62.3,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 3.25,
+   "fuzzy": 60.4,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 3.3,
+   "fuzzy": 58.7,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 3.35,
+   "fuzzy": 57.2,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 3.4,
+   "fuzzy": 55.9,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 3.45,
+   "fuzzy": 54.7,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 3.5,
+   "fuzzy": 53.6,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 3.55,
+   "fuzzy": 52.6,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 3.6,
+   "fuzzy": 51.7,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 3.65,
+   "fuzzy": 50.8,
+   "fclass": "S2",
+   "crisp": "S2"
+  },
+  {
+   "x": 3.7,
+   "fuzzy": 49.9,
+   "fclass": "S3",
+   "crisp": "S2"
+  },
+  {
+   "x": 3.75,
+   "fuzzy": 49.0,
+   "fclass": "S3",
+   "crisp": "S3"
+  },
+  {
+   "x": 3.8,
+   "fuzzy": 48.1,
+   "fclass": "S3",
+   "crisp": "S3"
+  },
+  {
+   "x": 3.85,
+   "fuzzy": 47.2,
+   "fclass": "S3",
+   "crisp": "S3"
+  },
+  {
+   "x": 3.9,
+   "fuzzy": 46.1,
+   "fclass": "S3",
+   "crisp": "S3"
+  },
+  {
+   "x": 3.95,
+   "fuzzy": 45.0,
+   "fclass": "S3",
+   "crisp": "S3"
+  },
+  {
+   "x": 4.0,
+   "fuzzy": 43.8,
+   "fclass": "S3",
+   "crisp": "S3"
+  },
+  {
+   "x": 4.05,
+   "fuzzy": 42.5,
+   "fclass": "S3",
+   "crisp": "S3"
+  },
+  {
+   "x": 4.1,
+   "fuzzy": 41.0,
+   "fclass": "S3",
+   "crisp": "S3"
+  },
+  {
+   "x": 4.15,
+   "fuzzy": 39.3,
+   "fclass": "S3",
+   "crisp": "S3"
+  },
+  {
+   "x": 4.2,
+   "fuzzy": 37.3,
+   "fclass": "S3",
+   "crisp": "S3"
+  },
+  {
+   "x": 4.25,
+   "fuzzy": 37.3,
+   "fclass": "S3",
+   "crisp": "S3"
+  },
+  {
+   "x": 4.3,
+   "fuzzy": 37.3,
+   "fclass": "S3",
+   "crisp": "S3"
+  },
+  {
+   "x": 4.35,
+   "fuzzy": 37.3,
+   "fclass": "S3",
+   "crisp": "S3"
+  },
+  {
+   "x": 4.4,
+   "fuzzy": 37.3,
+   "fclass": "S3",
+   "crisp": "S3"
+  },
+  {
+   "x": 4.45,
+   "fuzzy": 37.3,
+   "fclass": "S3",
+   "crisp": "S3"
+  },
+  {
+   "x": 4.5,
+   "fuzzy": 35.8,
+   "fclass": "S3",
+   "crisp": "S3"
+  },
+  {
+   "x": 4.55,
+   "fuzzy": 34.4,
+   "fclass": "S3",
+   "crisp": "S3"
+  },
+  {
+   "x": 4.6,
+   "fuzzy": 33.1,
+   "fclass": "S3",
+   "crisp": "S3"
+  },
+  {
+   "x": 4.65,
+   "fuzzy": 31.9,
+   "fclass": "S3",
+   "crisp": "S3"
+  },
+  {
+   "x": 4.7,
+   "fuzzy": 30.7,
+   "fclass": "S3",
+   "crisp": "S3"
+  },
+  {
+   "x": 4.75,
+   "fuzzy": 29.6,
+   "fclass": "S3",
+   "crisp": "S3"
+  },
+  {
+   "x": 4.8,
+   "fuzzy": 28.5,
+   "fclass": "S3",
+   "crisp": "S3"
+  },
+  {
+   "x": 4.85,
+   "fuzzy": 27.4,
+   "fclass": "S3",
+   "crisp": "S3"
+  },
+  {
+   "x": 4.9,
+   "fuzzy": 26.4,
+   "fclass": "S3",
+   "crisp": "S3"
+  },
+  {
+   "x": 4.95,
+   "fuzzy": 25.3,
+   "fclass": "S3",
+   "crisp": "S3"
+  },
+  {
+   "x": 5.0,
+   "fuzzy": 24.2,
+   "fclass": "N",
+   "crisp": "N"
+  },
+  {
+   "x": 5.05,
+   "fuzzy": 23.1,
+   "fclass": "N",
+   "crisp": "N"
+  },
+  {
+   "x": 5.1,
+   "fuzzy": 22.0,
+   "fclass": "N",
+   "crisp": "N"
+  },
+  {
+   "x": 5.15,
+   "fuzzy": 20.8,
+   "fclass": "N",
+   "crisp": "N"
+  },
+  {
+   "x": 5.2,
+   "fuzzy": 19.5,
+   "fclass": "N",
+   "crisp": "N"
+  },
+  {
+   "x": 5.25,
+   "fuzzy": 18.1,
+   "fclass": "N",
+   "crisp": "N"
+  },
+  {
+   "x": 5.3,
+   "fuzzy": 16.7,
+   "fclass": "N",
+   "crisp": "N"
+  },
+  {
+   "x": 5.35,
+   "fuzzy": 15.1,
+   "fclass": "N",
+   "crisp": "N"
+  },
+  {
+   "x": 5.4,
+   "fuzzy": 13.4,
+   "fclass": "N",
+   "crisp": "N"
+  },
+  {
+   "x": 5.45,
+   "fuzzy": 11.7,
+   "fclass": "N",
+   "crisp": "N"
+  },
+  {
+   "x": 5.5,
+   "fuzzy": 11.7,
+   "fclass": "N",
+   "crisp": "N"
+  },
+  {
+   "x": 5.55,
+   "fuzzy": 11.7,
+   "fclass": "N",
+   "crisp": "N"
+  },
+  {
+   "x": 5.6,
+   "fuzzy": 11.7,
+   "fclass": "N",
+   "crisp": "N"
+  },
+  {
+   "x": 5.65,
+   "fuzzy": 11.7,
+   "fclass": "N",
+   "crisp": "N"
+  },
+  {
+   "x": 5.7,
+   "fuzzy": 11.7,
+   "fclass": "N",
+   "crisp": "N"
+  },
+  {
+   "x": 5.75,
+   "fuzzy": 11.7,
+   "fclass": "N",
+   "crisp": "N"
+  },
+  {
+   "x": 5.8,
+   "fuzzy": 11.7,
+   "fclass": "N",
+   "crisp": "N"
+  },
+  {
+   "x": 5.85,
+   "fuzzy": 11.7,
+   "fclass": "N",
+   "crisp": "N"
+  },
+  {
+   "x": 5.9,
+   "fuzzy": 11.7,
+   "fclass": "N",
+   "crisp": "N"
+  },
+  {
+   "x": 5.95,
+   "fuzzy": 11.7,
+   "fclass": "N",
+   "crisp": "N"
+  },
+  {
+   "x": 6.0,
+   "fuzzy": 11.7,
+   "fclass": "N",
+   "crisp": "N"
+  },
+  {
+   "x": 6.05,
+   "fuzzy": 11.7,
+   "fclass": "N",
+   "crisp": "N"
+  },
+  {
+   "x": 6.1,
+   "fuzzy": 11.7,
+   "fclass": "N",
+   "crisp": "N"
+  },
+  {
+   "x": 6.15,
+   "fuzzy": 11.7,
+   "fclass": "N",
+   "crisp": "N"
+  },
+  {
+   "x": 6.2,
+   "fuzzy": 11.7,
+   "fclass": "N",
+   "crisp": "N"
+  },
+  {
+   "x": 6.25,
+   "fuzzy": 11.7,
+   "fclass": "N",
+   "crisp": "N"
+  },
+  {
+   "x": 6.3,
+   "fuzzy": 11.7,
+   "fclass": "N",
+   "crisp": "N"
+  },
+  {
+   "x": 6.35,
+   "fuzzy": 11.7,
+   "fclass": "N",
+   "crisp": "N"
+  },
+  {
+   "x": 6.4,
+   "fuzzy": 11.7,
+   "fclass": "N",
+   "crisp": "N"
+  },
+  {
+   "x": 6.45,
+   "fuzzy": 11.7,
+   "fclass": "N",
+   "crisp": "N"
+  },
+  {
+   "x": 6.5,
+   "fuzzy": 11.7,
+   "fclass": "N",
+   "crisp": "N"
+  },
+  {
+   "x": 6.55,
+   "fuzzy": 11.7,
+   "fclass": "N",
+   "crisp": "N"
+  },
+  {
+   "x": 6.6,
+   "fuzzy": 11.7,
+   "fclass": "N",
+   "crisp": "N"
+  },
+  {
+   "x": 6.65,
+   "fuzzy": 11.7,
+   "fclass": "N",
+   "crisp": "N"
+  },
+  {
+   "x": 6.7,
+   "fuzzy": 11.7,
+   "fclass": "N",
+   "crisp": "N"
+  },
+  {
+   "x": 6.75,
+   "fuzzy": 11.7,
+   "fclass": "N",
+   "crisp": "N"
+  },
+  {
+   "x": 6.8,
+   "fuzzy": 11.7,
+   "fclass": "N",
+   "crisp": "N"
+  },
+  {
+   "x": 6.85,
+   "fuzzy": 11.7,
+   "fclass": "N",
+   "crisp": "N"
+  },
+  {
+   "x": 6.9,
+   "fuzzy": 11.7,
+   "fclass": "N",
+   "crisp": "N"
+  },
+  {
+   "x": 6.95,
+   "fuzzy": 11.7,
+   "fclass": "N",
+   "crisp": "N"
+  },
+  {
+   "x": 7.0,
+   "fuzzy": 11.7,
+   "fclass": "N",
+   "crisp": "N"
+  },
+  {
+   "x": 7.05,
+   "fuzzy": 11.7,
+   "fclass": "N",
+   "crisp": "N"
+  },
+  {
+   "x": 7.1,
+   "fuzzy": 11.7,
+   "fclass": "N",
+   "crisp": "N"
+  },
+  {
+   "x": 7.15,
+   "fuzzy": 11.7,
+   "fclass": "N",
+   "crisp": "N"
+  },
+  {
+   "x": 7.2,
+   "fuzzy": 11.7,
+   "fclass": "N",
+   "crisp": "N"
+  },
+  {
+   "x": 7.25,
+   "fuzzy": 11.7,
+   "fclass": "N",
+   "crisp": "N"
+  },
+  {
+   "x": 7.3,
+   "fuzzy": 11.7,
+   "fclass": "N",
+   "crisp": "N"
+  },
+  {
+   "x": 7.35,
+   "fuzzy": 11.7,
+   "fclass": "N",
+   "crisp": "N"
+  },
+  {
+   "x": 7.4,
+   "fuzzy": 11.7,
+   "fclass": "N",
+   "crisp": "N"
+  },
+  {
+   "x": 7.45,
+   "fuzzy": 11.7,
+   "fclass": "N",
+   "crisp": "N"
+  },
+  {
+   "x": 7.5,
+   "fuzzy": 11.7,
+   "fclass": "N",
+   "crisp": "N"
+  },
+  {
+   "x": 7.55,
+   "fuzzy": 11.7,
+   "fclass": "N",
+   "crisp": "N"
+  },
+  {
+   "x": 7.6,
+   "fuzzy": 11.7,
+   "fclass": "N",
+   "crisp": "N"
+  },
+  {
+   "x": 7.65,
+   "fuzzy": 11.7,
+   "fclass": "N",
+   "crisp": "N"
+  },
+  {
+   "x": 7.7,
+   "fuzzy": 11.7,
+   "fclass": "N",
+   "crisp": "N"
+  },
+  {
+   "x": 7.75,
+   "fuzzy": 11.7,
+   "fclass": "N",
+   "crisp": "N"
+  },
+  {
+   "x": 7.8,
+   "fuzzy": 11.7,
+   "fclass": "N",
+   "crisp": "N"
+  },
+  {
+   "x": 7.85,
+   "fuzzy": 11.7,
+   "fclass": "N",
+   "crisp": "N"
+  },
+  {
+   "x": 7.9,
+   "fuzzy": 11.7,
+   "fclass": "N",
+   "crisp": "N"
+  },
+  {
+   "x": 7.95,
+   "fuzzy": 11.7,
+   "fclass": "N",
+   "crisp": "N"
+  },
+  {
+   "x": 8.0,
+   "fuzzy": 11.7,
+   "fclass": "N",
+   "crisp": "N"
+  }
+ ],
+ "sweep_stats": {
+  "ph_max_step_fuzzy": 4.2,
+  "ph_step": 0.05,
+  "ph_crisp_jumps": 5,
+  "ec_max_step_fuzzy": 2.0,
+  "ec_step": 0.05,
+  "ec_crisp_jumps": 3
+ },
+ "boundary_pairs": {
+  "ph_5.95": 84.9,
+  "ph_6.05": 88.3,
+  "ph_5.95_crisp": "S1",
+  "ph_6.05_crisp": "S1"
+ },
+ "engine_ms": {
+  "n": 300,
+  "mean": 3.58,
+  "median": 3.06,
+  "p95": 5.55,
+  "max": 6.28
+ }
+}

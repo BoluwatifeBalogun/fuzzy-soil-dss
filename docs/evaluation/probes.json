@@ -1,0 +1,87 @@
+[
+ {
+  "probe": "Body is a JSON array",
+  "status": 400,
+  "response": "crop: unknown crop; one of tomato, pepper, okra, onion, cabbage, amaranth"
+ },
+ {
+  "probe": "Body is a bare string",
+  "status": 400,
+  "response": "crop: unknown crop; one of tomato, pepper, okra, onion, cabbage, amaranth"
+ },
+ {
+  "probe": "Crop sent as a list",
+  "status": 400,
+  "response": "crop: unknown crop; one of tomato, pepper, okra, onion, cabbage, amaranth"
+ },
+ {
+  "probe": "Unknown crop",
+  "status": 400,
+  "response": "crop: unknown crop; one of tomato, pepper, okra, onion, cabbage, amaranth"
+ },
+ {
+  "probe": "pH sent as true",
+  "status": 400,
+  "response": "ph: enter a number"
+ },
+ {
+  "probe": "pH sent as '6_5'",
+  "status": 400,
+  "response": "ph: enter a number"
+ },
+ {
+  "probe": "pH sent as NaN",
+  "status": 400,
+  "response": "ph: enter a number"
+ },
+ {
+  "probe": "pH out of range (99)",
+  "status": 400,
+  "response": "ph: must be between 3 and 10"
+ },
+ {
+  "probe": "Texture not in list",
+  "status": 400,
+  "response": "texture: choose a texture class"
+ },
+ {
+  "probe": "Missing nitrogen",
+  "status": 400,
+  "response": "nitrogen: enter a number"
+ },
+ {
+  "probe": "State sent as an object",
+  "status": 200,
+  "response": "class S1, score 88.3"
+ },
+ {
+  "probe": "Payload over 16 KB",
+  "status": 413,
+  "response": "payload too large"
+ },
+ {
+  "probe": "Valid request, pH at range edge (10)",
+  "status": 200,
+  "response": "class N, score 11.7"
+ },
+ {
+  "probe": "POST /feedback/doesnotexist",
+  "status": 404,
+  "response": "not found"
+ },
+ {
+  "probe": "GET /result/doesnotexist",
+  "status": 404,
+  "response": "not found"
+ },
+ {
+  "probe": "GET /api/mf/tomato/texture",
+  "status": 404,
+  "response": "not found"
+ },
+ {
+  "probe": "GET /api/rules/yam",
+  "status": 404,
+  "response": "not found"
+ }
+]

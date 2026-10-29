@@ -108,7 +108,10 @@ window.APP = (() => {
       if (zk && cfg.zones[zk]) { applyPreset(cfg.zones[zk].preset, zk); if (!stateSel.value) { const first = Object.keys(cfg.states).find((s) => cfg.states[s] === zk); if (first) stateSel.value = first; } }
       else applyPreset(cfg.defaults, null);
     } else {
+      // Values came from the server (validation error or "Adjust the values"): keep them, but still show the zone.
       numeric.forEach((f) => { form.querySelector(`input[type=range][data-for=${f}]`).value = $(`#in-${f}`).value; });
+      const zk = cfg.states[stateSel.value];
+      if (zk) { const z = cfg.zones[zk]; zoneLabel.innerHTML = `<span class="badge" style="--bc:${z.palette}">${z.name}</span>`; }
       schedule();
     }
 

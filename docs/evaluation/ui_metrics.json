@@ -1,0 +1,187 @@
+{
+ "validation_status_text": "enter a number",
+ "zone_label_after_validation": "Humid forest",
+ "mf_probe_label": "3.2 dS/m",
+ "tasks": [
+  {
+   "task": "Assess tomato on a Lagos plot using the state preset",
+   "interactions": 3,
+   "completed": true,
+   "system_time_s": 0.66
+  },
+  {
+   "task": "Assess onion from a laboratory sheet (eight values typed)",
+   "interactions": 10,
+   "completed": true,
+   "system_time_s": 1.96
+  },
+  {
+   "task": "Assess okra with only rough knowledge (preset plus three rough levels)",
+   "interactions": 6,
+   "completed": true,
+   "system_time_s": 0.65
+  }
+ ],
+ "keyboard": {
+  "tab_stops_to_submit": 31,
+  "reached_submit": true,
+  "focus_visible_pct": 100.0,
+  "submitted_with_enter": true
+ },
+ "labels": {
+  "controls": 35,
+  "named": 35,
+  "unnamed": []
+ },
+ "responsive": [
+  {
+   "width": 375,
+   "page": "/",
+   "overflow_px": 0
+  },
+  {
+   "width": 375,
+   "page": "/analyse",
+   "overflow_px": 0
+  },
+  {
+   "width": 375,
+   "page": "/result",
+   "overflow_px": 0
+  },
+  {
+   "width": 375,
+   "page": "/method",
+   "overflow_px": 0
+  },
+  {
+   "width": 375,
+   "page": "/knowledge",
+   "overflow_px": 0
+  },
+  {
+   "width": 768,
+   "page": "/",
+   "overflow_px": 0
+  },
+  {
+   "width": 768,
+   "page": "/analyse",
+   "overflow_px": 0
+  },
+  {
+   "width": 768,
+   "page": "/result",
+   "overflow_px": 0
+  },
+  {
+   "width": 768,
+   "page": "/method",
+   "overflow_px": 0
+  },
+  {
+   "width": 768,
+   "page": "/knowledge",
+   "overflow_px": 0
+  },
+  {
+   "width": 1024,
+   "page": "/",
+   "overflow_px": 0
+  },
+  {
+   "width": 1024,
+   "page": "/analyse",
+   "overflow_px": 0
+  },
+  {
+   "width": 1024,
+   "page": "/result",
+   "overflow_px": 0
+  },
+  {
+   "width": 1024,
+   "page": "/method",
+   "overflow_px": 0
+  },
+  {
+   "width": 1024,
+   "page": "/knowledge",
+   "overflow_px": 0
+  },
+  {
+   "width": 1440,
+   "page": "/",
+   "overflow_px": 0
+  },
+  {
+   "width": 1440,
+   "page": "/analyse",
+   "overflow_px": 0
+  },
+  {
+   "width": 1440,
+   "page": "/result",
+   "overflow_px": 0
+  },
+  {
+   "width": 1440,
+   "page": "/method",
+   "overflow_px": 0
+  },
+  {
+   "width": 1440,
+   "page": "/knowledge",
+   "overflow_px": 0
+  }
+ ],
+ "page_load": [
+  {
+   "page": "/",
+   "dcl_ms": 78.3,
+   "load_ms": 173.3,
+   "html_bytes": 13694
+  },
+  {
+   "page": "/analyse",
+   "dcl_ms": 77.7,
+   "load_ms": 118.3,
+   "html_bytes": 35152
+  },
+  {
+   "page": "/result",
+   "dcl_ms": 84.5,
+   "load_ms": 167.5,
+   "html_bytes": 19917
+  },
+  {
+   "page": "/method",
+   "dcl_ms": 71,
+   "load_ms": 123.9,
+   "html_bytes": 14522
+  },
+  {
+   "page": "/knowledge",
+   "dcl_ms": 66.7,
+   "load_ms": 118.3,
+   "html_bytes": 14909
+  }
+ ],
+ "reduced_motion_hero_visible": true,
+ "page_errors": [],
+ "api_latency_ms": {
+  "n": 200,
+  "median": 5.7,
+  "p95": 8.1,
+  "max": 15.0
+ },
+ "load_test": {
+  "clients": 50,
+  "requests": 500,
+  "ok": 500,
+  "wall_s": 1.89,
+  "throughput_rps": 263.9,
+  "median_ms": 81.0,
+  "p95_ms": 381.8
+ }
+}

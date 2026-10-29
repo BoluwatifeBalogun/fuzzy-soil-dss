@@ -57,7 +57,7 @@
       <h3 style="margin:1.5rem 0 .6rem;font-size:1.1rem">Worth watching</h3>
       <ul class="lims">
         {% for l in r.notes %}
-        <li data-r="{{ 'S1' if l.term == 'above_threshold' else 'S2' }}"><span class="bar" aria-hidden="true"></span><div><b>{{ l.label }} is {{ l.term_label }}</b><span class="t">{{ 'still within range, but losing yield' if l.term == 'above_threshold' else 'moderate, not limiting' }}</span><p>{{ l.advice }}</p></div></li>
+        <li data-r="{{ 'S1' if l.term == 'above_threshold' else 'S2' }}"><span class="bar" aria-hidden="true"></span><div><b>{{ l.label }} is {{ l.term_label }}</b><span class="t">{{ 'still within range, but losing yield' if l.term == 'above_threshold' else 'rated S2 for ' ~ crop.name|lower ~ ' · correctable, not limiting' }}</span><p>{{ l.advice }}</p></div></li>
         {% endfor %}
       </ul>
       {% endif %}

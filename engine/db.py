@@ -30,10 +30,12 @@ CREATE TABLE IF NOT EXISTS state (
 );
 CREATE TABLE IF NOT EXISTS query_log (
     query_id TEXT PRIMARY KEY, crop_id TEXT, state TEXT, inputs_json TEXT, result_json TEXT,
-    score REAL, class TEXT, created_at TEXT
+    score REAL, class TEXT, created_at TEXT,
+    FOREIGN KEY (crop_id) REFERENCES crop(crop_id)
 );
 CREATE TABLE IF NOT EXISTS feedback (
-    feedback_id INTEGER PRIMARY KEY AUTOINCREMENT, query_id TEXT, helpful INTEGER, comment TEXT, created_at TEXT
+    feedback_id INTEGER PRIMARY KEY AUTOINCREMENT, query_id TEXT, helpful INTEGER, comment TEXT, created_at TEXT,
+    FOREIGN KEY (query_id) REFERENCES query_log(query_id)
 );
 CREATE TABLE IF NOT EXISTS meta (key TEXT PRIMARY KEY, value TEXT);
 CREATE INDEX IF NOT EXISTS ix_query_class ON query_log(class);

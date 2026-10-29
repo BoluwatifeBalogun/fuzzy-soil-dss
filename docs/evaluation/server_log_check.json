@@ -1,0 +1,1 @@
+{"log_lines": 6, "tracebacks": 0, "error_lines": 0, "note": "Gunicorn error log (access log off); 5xx absence is shown by probes.json, the load test (all 200) and the latency loop"}

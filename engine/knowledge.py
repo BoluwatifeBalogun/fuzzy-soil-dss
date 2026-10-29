@@ -22,13 +22,15 @@ FACTORS = {
         "unit": "pH (water)",
         "universe": (3.0, 10.0),
         "step": 0.1,
-        "terms": ["strongly_acidic", "moderately_acidic", "neutral", "moderately_alkaline", "strongly_alkaline"],
+        "terms": ["extremely_acidic", "strongly_acidic", "moderately_acidic", "neutral", "moderately_alkaline", "strongly_alkaline", "extremely_alkaline"],
         "term_labels": {
+            "extremely_acidic": "extremely acidic",
             "strongly_acidic": "strongly acidic",
             "moderately_acidic": "moderately acidic",
             "neutral": "neutral",
             "moderately_alkaline": "moderately alkaline",
             "strongly_alkaline": "strongly alkaline",
+            "extremely_alkaline": "extremely alkaline",
         },
         "crop_specific": True,
         "help": "Below about 5.5 phosphorus locks up and aluminium can be toxic; above 7.5 iron, zinc and manganese become scarce.",
@@ -145,7 +147,12 @@ SEVERITY_ORDER = ["texture", "moisture", "ph", "ec", "organic_carbon", "nitrogen
 _NUTRIENT_RATING = {"low": "S2", "moderate": "S1", "high": "S1"}
 _OC_RATING = {"very_low": "S3", "low": "S2", "moderate": "S1", "high": "S1"}
 _EC_RATING = {"low": "S1", "moderate": "S2", "high": "S3", "very_high": "N"}
-_PH_RATING = {"strongly_acidic": "N", "moderately_acidic": "S2", "neutral": "S1", "moderately_alkaline": "S2", "strongly_alkaline": "N"}
+# Sadiq et al. (2025) rate pH beyond the S2 bands as S3. Below about 4.5 (aluminium and manganese
+# toxicity) and above about 9.0 (sodicity) vegetables are not practical without reclamation, so those
+# extreme bands are rated N (provisional, for expert review).
+_PH_RATING = {"extremely_acidic": "N", "strongly_acidic": "S3", "moderately_acidic": "S2", "neutral": "S1",
+              "moderately_alkaline": "S2", "strongly_alkaline": "S3", "extremely_alkaline": "N"}
+PH_EXTREME = {"acid": 4.5, "alkaline": 9.0, "source": "Aluminium toxicity below about pH 4.5; sodicity above about pH 9.0 (provisional, expert review)"}
 
 CROPS = {
     "tomato": {
@@ -233,10 +240,12 @@ def rating_table(crop_key):
 # Advice shown when a factor limits the plot. Keyed by factor then term.
 ADVICE = {
     "ph": {
-        "strongly_acidic": "pH is far too low. Apply agricultural lime (2 to 4 t/ha depending on texture) and retest after one season before planting. Or choose another plot.",
+        "extremely_acidic": "pH is far too low for any vegetable; aluminium is likely toxic. Lime heavily (3 to 5 t/ha), retest after a season, or choose another plot.",
+        "strongly_acidic": "pH is well below what this crop prefers. Apply agricultural lime (2 to 4 t/ha depending on texture) and retest before planting; expect reduced yield until it is corrected.",
         "moderately_acidic": "Slightly sour. Lime at 1 to 2 t/ha, or work in wood ash and well-rotted manure, then recheck. Most vegetables will still grow with reduced yield.",
         "moderately_alkaline": "Slightly alkaline; iron and zinc may go short. Add organic matter and, where available, elemental sulphur. Avoid wood ash.",
-        "strongly_alkaline": "Strongly alkaline, likely with free carbonates. Correcting this is slow and expensive; prefer another plot for vegetables.",
+        "strongly_alkaline": "Strongly alkaline, likely with free carbonates. Iron and zinc will run short; use acidifying fertilisers and plenty of organic matter, and expect reduced yield.",
+        "extremely_alkaline": "Extremely alkaline, probably sodic. Reclamation with gypsum and leaching is slow and expensive; choose another plot for vegetables.",
     },
     "nitrogen": {
         "low": "Nitrogen is low. Incorporate poultry manure or compost before planting and side-dress with urea or NPK after establishment. Legume rotation helps between seasons.",

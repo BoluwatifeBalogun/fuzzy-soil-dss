@@ -19,11 +19,11 @@ def test_ph_breakpoints_follow_sadiq_for_tomato():
 
 
 def test_ec_breakpoints_from_maas_hoffman_and_sys_yield_bands():
-    """Crossovers sit at 20, 40 and 60 % yield loss (Sys S1/S2/S3/N bands)."""
+    """Crossovers sit at 15, 40 and 60 % yield loss (Sys et al. 1991 limitation levels 85/60/40 % of potential yield)."""
     m = ec_mfs("onion")
     a, b = 1.2, 16.0
-    e20, e40, e60 = a + 20 / b, a + 40 / b, a + 60 / b
-    assert (m["low"][1][2] + m["low"][1][3]) / 2 == pytest.approx(e20)
+    e15, e40, e60 = a + 15 / b, a + 40 / b, a + 60 / b
+    assert (m["low"][1][2] + m["low"][1][3]) / 2 == pytest.approx(e15)
     assert (m["moderate"][1][2] + m["moderate"][1][3]) / 2 == pytest.approx(e40)
     assert (m["high"][1][2] + m["high"][1][3]) / 2 == pytest.approx(e60)
     assert fuzzify("onion", dict(GOOD, ec=1.0))["ec"]["low"] == 1.0
@@ -192,3 +192,30 @@ def test_report_table_3_4_rule_1_is_highly_suitable():
     """Neutral pH, low salt, loam, adequate N, moderate OC: the report's flagship example."""
     r = evaluate("tomato", {"ph": 6.5, "nitrogen": 1.5, "phosphorus": 14, "potassium": 0.23, "organic_carbon": 1.2, "ec": 0.5, "moisture": 65, "texture": "loam"})
     assert r["class"] == "S1"
+
+
+
+def test_extreme_ph_rules_cite_the_extreme_band_source_and_keep_ph_capitalised():
+    for crop in K.CROP_ORDER:
+        for r in generate_rules(crop):
+            if r["antecedent"].get("ph") and r["antecedent"]["ph"][0].startswith("extremely"):
+                assert r["source"] == K.PH_EXTREME["source"]
+                assert "soil pH" in r["text"]
+
+
+def test_requirements_declare_scipy():
+    """scikit-fuzzy 0.5.0 imports SciPy without declaring it (defect 1 in Chapter Four)."""
+    import os
+    req = open(os.path.join(os.path.dirname(os.path.dirname(__file__)), "requirements.txt")).read().lower()
+    assert "scipy" in req
+
+
+def test_ph_beyond_s2_band_is_marginal_and_extremes_not_suitable():
+    """Defect 9: pH beyond the S2 band rates S3 (Sadiq et al., 2025); below ~4.5 or above ~9 rates N."""
+    from engine.fis import fuzzify
+    r = K.rating_table("amaranth")["ph"]
+    assert r["strongly_acidic"] == "S3" and r["strongly_alkaline"] == "S3"
+    assert r["extremely_acidic"] == "N" and r["extremely_alkaline"] == "N"
+    lagos = K.ZONES["forest"]["preset"]          # pH 5.2
+    assert evaluate("amaranth", lagos)["class"] == "S3"
+    assert evaluate("tomato", dict(GOOD, ph=3.8))["class"] == "N"

@@ -44,12 +44,17 @@ def ph_mfs(crop_key):
     low, high = c["s2_low"], c["s2_high"]
     s_lo = min(0.5, (a - low) / 2.0)
     s_hi = min(0.5, (high - b) / 2.0)
+    # Extreme bands: crossover at PH_EXTREME, 0.2-unit shoulders, kept inside the strongly-acidic/alkaline plateau.
+    ea = min(K.PH_EXTREME["acid"], low - s_lo - 0.2)
+    eb = max(K.PH_EXTREME["alkaline"], high + s_hi + 0.2)
     return {
-        "strongly_acidic": ("trap", (3.0, 3.0, low - s_lo, low)),
+        "extremely_acidic": ("trap", (3.0, 3.0, ea - 0.2, ea + 0.2)),
+        "strongly_acidic": ("trap", (ea - 0.2, ea + 0.2, low - s_lo, low)),
         "moderately_acidic": ("trap", (low - s_lo, low, a - s_lo, a)),
         "neutral": ("trap", (a - s_lo, a, b, b + s_hi)),
         "moderately_alkaline": ("trap", (b, b + s_hi, high, high + s_hi)),
-        "strongly_alkaline": ("trap", (high, high + s_hi, 10.0, 10.0)),
+        "strongly_alkaline": ("trap", (high, high + s_hi, eb - 0.2, eb + 0.2)),
+        "extremely_alkaline": ("trap", (eb - 0.2, eb + 0.2, 10.0, 10.0)),
     }
 
 
@@ -57,20 +62,21 @@ def ec_mfs(crop_key):
     """Crop-specific salinity membership functions from the Maas-Hoffman threshold
     `a` (dS/m) and slope `b` (% yield loss per dS/m above `a`).
 
-    Term boundaries follow the Sys et al. (1991) yield bands: S1 above 80 % of
-    potential yield, S2 60 to 80 %, S3 40 to 60 %, N below 40 %. So the crossover
-    from low to moderate is at 20 % loss, moderate to high at 40 %, high to very
-    high at 60 %. Shoulders are half the width of the moderate band.
+    Term boundaries follow the Sys et al. (1991) limitation levels: no or slight
+    limitation down to 85 % of potential yield (S1), moderate to 60 % (S2), severe to
+    40 % (S3), very severe below 40 % (N). So the crossover from low to moderate is at
+    15 % loss, moderate to high at 40 %, high to very high at 60 %. Shoulders are half
+    the width of the moderate band, at most 0.5 dS/m.
     """
     c = K.CROPS[crop_key]["ec"]
     a, b = c["a"], c["b"]
     hi = K.FACTORS["ec"]["universe"][1]
-    e20, e40, e60 = a + 20.0 / b, a + 40.0 / b, a + 60.0 / b
-    d = min(0.5, (e40 - e20) / 2.0)
+    e15, e40, e60 = a + 15.0 / b, a + 40.0 / b, a + 60.0 / b
+    d = min(0.5, (e40 - e15) / 2.0)
     c = lambda v: min(v, hi)  # noqa: E731  keep tuples inside the universe
     return {
-        "low": ("trap", (0.0, 0.0, c(e20 - d), c(e20 + d))),
-        "moderate": ("trap", (c(e20 - d), c(e20 + d), c(e40 - d), c(e40 + d))),
+        "low": ("trap", (0.0, 0.0, c(e15 - d), c(e15 + d))),
+        "moderate": ("trap", (c(e15 - d), c(e15 + d), c(e40 - d), c(e40 + d))),
         "high": ("trap", (c(e40 - d), c(e40 + d), c(e60 - d), c(e60 + d))),
         "very_high": ("trap", (c(e60 - d), c(e60 + d), hi, hi)),
     }
@@ -174,8 +180,8 @@ def generate_rules(crop_key):
                     "antecedent": {f: [term]},
                     "consequent": "marginally_suitable" if r == "S3" else "not_suitable",
                     "weight": 1.0,
-                    "source": _source_for(crop_key, f),
-                    "text": f"IF {K.FACTORS[f]['label'].lower()} IS {K.FACTORS[f]['term_labels'][term]}"
+                    "source": _source_for(crop_key, f, term),
+                    "text": f"IF {_lower_first(K.FACTORS[f]['label'])} IS {K.FACTORS[f]['term_labels'][term]}"
                             + (" AND NOT (any factor is in a not-suitable range)" if r == "S3" and n_terms else "")
                             + f" THEN suitability IS {'marginally suitable' if r == 'S3' else 'not suitable'}",
                 }
@@ -203,7 +209,14 @@ def generate_rules(crop_key):
     return rules
 
 
-def _source_for(crop_key, factor):
+def _lower_first(label):
+    """'Soil pH' -> 'soil pH', 'Salinity (ECe)' -> 'salinity (ECe)': keeps units and acronyms intact."""
+    return label[:1].lower() + label[1:]
+
+
+def _source_for(crop_key, factor, term=None):
+    if factor == "ph" and term in ("extremely_acidic", "extremely_alkaline"):
+        return K.PH_EXTREME["source"]
     if factor == "ph":
         return K.CROPS[crop_key]["ph"]["source"]
     if factor == "ec":
